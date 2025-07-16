@@ -1,0 +1,38 @@
+
+<h1>{{'editAnnouncement' | translate}}</h1>
+
+<form class="form" ng-submit="updateItem()">
+
+
+    <button type="submit" class="btn btn-primary pull-right">{{'update' | translate}}</button>
+
+    <div ng-include="'/ng/view/tf-admin/tf-announcements/base-form.html'"></div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-md-4">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="attachment in item.attachments">
+                    <h5>
+                        <span class="glyphicon glyphicon-paperclip"></span>
+                        <span>{{attachment.name}}</span>
+                        <small>{{attachment.description}}</small>
+                    </h5>
+
+                    <a class="btn btn-sm btn-default" tf-href="/files/{{attachment.path}}" target="_blank">
+                        <span class="glyphicon glyphicon-search"></span>
+                        {{'view' | translate}}
+                    </a>
+                    <a class="btn btn-sm btn-danger" ng-click="confirmAttachmentDelete({announcementId: item.id, attachmentName: attachment.name})">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        {{'delete' | translate}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+</form>

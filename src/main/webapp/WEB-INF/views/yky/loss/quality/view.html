@@ -1,0 +1,128 @@
+<tabset>
+    <tab heading="{{'info' | translate}}">
+        <br />
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>{{'lossDate' | translate}}</label>
+                            </td>
+                            <td>
+                                {{loss.lossDate}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>{{'model' | translate}}</label>
+                            </td>
+                            <td>
+                                {{loss.model.code}} - {{loss.model.name}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>{{'part' | translate}}</label>
+                            </td>
+                            <td>
+                                {{loss.part.disegno}} - {{loss.part.descTr}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>{{'partQuantity' | translate}}</label>
+                            </td>
+                            <td>
+                                {{loss.qty}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>{{'supplier' | translate}}</label>
+                            </td>
+                            <td>
+                                {{loss.supplier.sapCode}} - {{loss.supplier.name}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>{{'qualityLossTable' | translate}}</label>
+                            </td>
+                            <td>
+                                {{loss.qualityLossTable.name}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>{{'sqpNo' | translate}}</label>
+                            </td>
+                            <td>
+                                {{loss.sqpNo}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>{{'qualityLossTable' | translate}}</label>
+                            </td>
+                            <td>
+                                {{loss.qualityLossTable.name}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>{{'lossCode' | translate}}</label>
+                            </td>
+                            <td class="text-right">
+                                {{loss.lossCode.description}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>{{'qualityTraceId' | translate}}</label>
+                            </td>
+                            <td>
+                                {{loss.qualityTraceId}}
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <div ng-include="'/ng/view/yky/loss/view-direct-durations.html'"></div>
+
+                <hr />
+
+               
+
+            </div>
+
+        </div>
+    </tab>
+
+    <tab heading="{{'discardedParts' | translate}}">
+        <br />
+        <div ng-include="'/ng/view/yky/loss/common/view/view-discarded-parts.html'"></div>
+    </tab>
+    <tab heading="{{'otherCosts' | translate}}">
+        <br />
+        <div ng-include="'/ng/view/yky/loss/common/view/view-other-costs.html'"></div>
+    </tab>
+</tabset>

@@ -1,0 +1,95 @@
+<h1>{{'applicationLogManagement' | translate}} </h1>
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <span>{{'currentLogLevelIs' | translate}}</span>
+					<span ng-class="getClassFromLogLevel()">
+                        {{status.currentLevel}}
+					</span>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="panel panel-info">
+
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <span>{{'changeLogLevelTo' |translate}}</span>
+                    </div>
+
+                    <div class="col-md-8 text-right">
+                        <a class="btn btn-xs btn-danger" ng-click="changeLevel('ERROR')">ERROR</a>
+                        <a class="btn btn-xs btn-warning" ng-click="changeLevel('WARN')">WARN</a>
+                        <a class="btn btn-xs btn-info" ng-click="changeLevel('INFO')">INFO</a>
+                        <a class="btn btn-xs btn-primary" ng-click="changeLevel('DEBUG')">DEBUG</a>
+                        <a class="btn btn-xs btn-primary" ng-click="changeLevel('TRACE')">
+                            <i>* TRACE</i>
+                        </a>
+                        <a class="btn btn-xs btn-primary" ng-click="changeLevel('ALL')">
+                            <strong>** ALL</strong>
+                        </a>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="panel panel-success" ng-if="status.capturing">
+            <div class="panel-body">
+                <span class="glyphicon glyphicon-ok"></span>
+                <span>{{'capturingConsole'|translate}}</span>
+                <button class="btn btn-xs btn-default pull-right" ng-click="toggleCapture()">{{'toggleCapturing' | translate}}</button>
+            </div>
+        </div>
+
+        <div class="panel panel-danger" ng-if="!status.capturing">
+            <div class="panel-body bg-danger">
+                <span class="glyphicon glyphicon-remove"></span>
+                <span>{{'notCapturingConsole' | translate}}</span>
+                <button class="btn btn-xs btn-default pull-right" ng-click="toggleCapture()">{{'toggleCapturing' | translate}}</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Console &nbsp;
+            <button class="btn btn-default" id="console-clear" ng-click="clearConsole()">
+                <i class="fa fa-terminal"></i>&nbsp;
+                <span>{{'clearConsole' | translate}}</span>
+            </button>
+				
+				<div class="pull-right">
+                    <div class="form-group has-feedback">
+                        <input type="text" ng-model="strFilter" class="form-control" />
+                        <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+                    </div>
+				</div>
+        </h3>
+    </div>
+    <div class="panel-body" id="console-div">
+        <span class="console-line" ng-repeat="log in logs | filter:strFilter">{{log.value}}<br /></span>
+    </div>
+</div>

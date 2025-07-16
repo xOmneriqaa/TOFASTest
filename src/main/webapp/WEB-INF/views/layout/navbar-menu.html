@@ -1,0 +1,56 @@
+<!-- place your custom header urls here -->
+<!-- reports -->
+<li ui-sref-active="active" tf-has-roles="" roles="['TFG_YKY_REPORT', 'TFG_YKY_SUPPLIER', 'TFG_YKY_LC_PRODUCTION', 'TFG_YKY_LC_LOGISTICS', 'TFG_YKY_APPROVAL_QUALITY', 'TFG_YKY_APPROVAL_LOGISTICS', 'TFG_YKY_LC_QUALITY', 'TFG_YKY_LC_QUALITY_LAB', 'TFG_YKY_PRESS_USER','TFG_YKY_BUYER','TFG_YKY_REF','TFG_YKY_DURATION_DEF']">
+    <a ui-sref="reports">
+        <i class="fa fa-newspaper-o"></i> {{'reports' |translate}}
+    </a>
+</li>
+
+<!-- objections -->
+<li ui-sref-active="active" tf-has-role="TFG_YKY_REF">
+    <a ui-sref="objections">
+        <span class="fa fa-fire-extinguisher"></span> {{'objections' |translate}}
+    </a>
+</li>
+
+<!-- supplier menu -->
+<li ui-sref-active="active" tf-has-role="TFG_YKY_SUPPLIER">
+    <a ui-sref="supplier">
+        <span class="fa fa-suitcase"></span> {{'supplier' |translate}}
+    </a>
+</li>
+
+<!-- buyer menu -->
+<li ui-sref-active="active" tf-has-role="TFG_YKY_BUYER">
+    <a ui-sref="buyer">
+        <span class="fa fa-bank"></span> {{'buyer' |translate}}
+    </a>
+</li>
+
+<!-- losses menu -->
+<li ui-sref-active="active" tf-has-roles="" roles="['TFG_YKY_LC_PRODUCTION', 'TFG_YKY_LC_LOGISTICS', 'TFG_YKY_APPROVAL_QUALITY', 'TFG_YKY_APPROVAL_LOGISTICS', 'TFG_YKY_LC_QUALITY', 'TFG_YKY_LC_QUALITY_LAB', 'TFG_YKY_PRESS_USER']">
+    <a ui-sref="losses">
+        <span class="fa fa-pencil"></span> {{'losses' |translate}}
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<!-- dont edit admin nor developer menu links -->
+
+<li ui-sref-active="active" tf-has-roles="" roles="['TFG_YKY_ADMIN', 'TFG_YKY_DURATION_DEF', 'TFG_YKY_PRESS_USER']">
+    <a ui-sref="tfAdmin">
+        <span class="fa fa-gamepad"></span> {{'adminActions' |translate}}
+    </a>
+</li>
+
+<li ui-sref-active="active" tf-has-developer-role="">
+    <a ui-sref="tfDeveloper">
+        <span class="fa fa-gamepad"></span> {{'developerActions' |translate}}
+    </a>
+</li>

@@ -1,0 +1,12 @@
+<div class="error-wrapper">
+    <h1 class="text-danger">500!</h1>
+    <hr />
+    <h3>{{'serverError500' | translate}}</h3>
+    <br />
+    {{'pleaseContactSystemAdminWithFollowingCode' | translate}}
+    <h2>
+        <span class="label label-danger">
+            {{getExceptionId()}}
+        </span>
+    </h2>
+</div>

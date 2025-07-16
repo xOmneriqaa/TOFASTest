@@ -1,0 +1,36 @@
+<h1 th:text="#{devControllerInfo}">
+</h1>
+Defined @Controller beans and their @RequestMapping annotated methods.
+
+<br />
+<br />
+
+<table class="table table-bordered">
+    <thead>
+        <th>{{'className' |translate}}</th>
+        <th>{{'classMapping' |translate}}</th>
+        <th>{{'methodName' | translate}}</th>
+        <th>{{'methodMapping' | translate}}</th>
+        <th>{{'fullMapping' | translate}}</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="controller in controllers">
+            <td ng-class="controller.isFirstControllerMap ? '' : 'text-muted'">
+                {{controller.className}}
+            </td>
+            <td ng-class="controller.isFirstMethodMap ? '' : 'text-muted'">
+                {{controller.controllerMap}}
+            </td>
+            <td ng-class="controller.isFirstMethod ? '' : 'text-muted'">
+                {{controller.methodName}}
+            </td>
+            <td>
+                {{controller.methodMap}}
+            </td>
+            <td>
+                {{controller.fullMap}}
+            </td>
+        </tr>
+
+    </tbody>
+</table>

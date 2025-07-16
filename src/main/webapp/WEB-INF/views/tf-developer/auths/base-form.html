@@ -1,0 +1,14 @@
+<div class="form-group">
+    <label>{{'urlPath' | translate}}</label>
+    <input type="text" class="form-control" ng-model="item.urlPath" />
+</div>
+
+<div class="form-group">
+    <label>{{'roleName' | translate}}</label>
+    <div ui-select="" ng-model="item.role" theme="bootstrap">
+        <div ui-select-match="">{{$select.selected.name}}</div>
+        <div ui-select-choices="" repeat="role as role in roles | filter: $select.search | limitTo: 20">
+            {{role.name}}
+        </div>
+    </div>
+</div>

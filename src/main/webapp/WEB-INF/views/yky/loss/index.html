@@ -1,0 +1,82 @@
+<div class="row">
+
+    <div class="col-sm-2">
+
+        <h3>{{ 'loss' | translate }}</h3>
+
+        <nav class="bs-docs-sidebar">
+
+            <ul class="nav nav-pills nav-stacked">
+
+                <li ui-sref-active="active" tf-has-role="TFG_YKY_LC_QUALITY">
+                    <a ui-sref="losses.newQuality">
+                        {{'addQualityLoss' | translate }}
+                    </a>
+                </li>
+
+                <li ui-sref-active="active" tf-has-role="TFG_YKY_LC_LOGISTICS">
+                    <a ui-sref="losses.newLogistics">
+                        {{'addLogisticsLoss' | translate }}
+                    </a>
+                </li>
+
+                <li ui-sref-active="active" tf-has-role="TFG_YKY_LC_QUALITY_LAB">
+                    <a ui-sref="losses.newQualityLab">
+                        {{'addQualityLabLoss' | translate }}
+                    </a>
+                </li>
+
+                <li ui-sref-active="active" tf-has-role="TFG_YKY_LC_PRODUCTION">
+                    <a ui-sref="losses.newProduction">
+                        {{'addProductionLoss' | translate }}
+                    </a>
+                </li>
+
+                <hr/>
+
+                <li ui-sref-active="active" tf-has-roles="" roles="['TFG_YKY_APPROVAL_LOGISTICS', 'TFG_YKY_APPROVAL_QUALITY']">
+                    <a ui-sref="losses.unApprovedLosses">
+                        {{'listUnApprovedLosses' | translate }}
+                    </a>
+                </li>
+
+                <li ui-sref-active="active" tf-has-roles="" roles="['TFG_YKY_LC_PRODUCTION']">
+                    <a ui-sref="losses.inCompletedLosses">
+                        {{'listInCompletedLosses' | translate }}
+                    </a>
+                </li>
+
+                <hr />
+
+
+                <li ui-sref-active="active" tf-has-roles="" roles="['TFG_YKY_PRESS_USER']">
+                    <a ui-sref="losses.newPressQuality">
+                        {{'addPressQualityLoss' | translate }}
+                    </a>
+                </li>
+
+
+                <li ui-sref-active="active" tf-has-roles="" roles="['TFG_YKY_PRESS_USER']">
+                    <a ui-sref="losses.newPressLogistics">
+                        {{'addPressLogisticsLoss' | translate }}
+                    </a>
+                </li>
+
+
+                <li ui-sref-active="active" tf-has-roles="" roles="['TFG_YKY_PRESS_USER']">
+                    <a ui-sref="losses.listOpenPressLosses">
+                        {{'listOpenPressLosses' | translate }}
+                    </a>
+                </li>
+
+
+
+
+            </ul>
+        </nav>
+    </div>
+
+    <div class="col-sm-10 slide-reveal" ui-view=""></div>
+
+
+</div>

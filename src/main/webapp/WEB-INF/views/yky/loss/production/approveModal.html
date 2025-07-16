@@ -1,0 +1,49 @@
+<form ng-submit="ok()">
+    <div class="modal-header">
+        <h3 class="modal-title">{{'approveLoss' | translate}}</h3>
+    </div>
+    <div class="modal-body">
+        {{'doYouWantToApproveLoss' | translate}}
+
+
+        <div class="form-group">
+            <label ng-hide="sqpInputDisabled">{{'sqpNo' | translate}}</label>
+            <!--<input type="text" class="form-control" ng-disabled="isSuppChainProject" ng-model="sqpNo" tf-sqp-no="" required/>-->
+            <input type="text" class="form-control" ng-hide="sqpInputDisabled" ng-required="!fieldVisible" ng-disabled="isSuppChainProject" ng-model="sqpNo" tf-sqp-no="" />
+        </div>
+
+        <div class="form-group" ng-hide="fieldVisible" >
+            <label>{{'supplier' | translate}}</label>
+            <select class="form-control" ng-model="supplierNo" name="supplier" ng-required="!fieldVisible">
+                <option value="">--</option>
+                <option ng-repeat="supplier in suppliers" value="{{supplier.sapCode}}">[{{supplier.sapCode}}] - {{supplier.name}}</option>
+            </select>
+        </div>
+
+        <div class="form-group" ng-hide="fieldVisible">
+            <label>{{'lossCode' | translate}}</label>
+            <select class="form-control" ng-model="lossCodeId" name="lossCode" ng-required="!fieldVisible"
+                    validationMessage="{{'pleaseSelectLossCode' |translate}}">
+                <option value="">--</option>
+                <option ng-repeat="lossCode in lossCodes" value="{{lossCode.lossCode}}">{{lossCode.description}}</option>
+            </select>
+
+            <div class="help-block">
+                <p class="k-invalid-msg" data-for="lossCode"></p>
+            </div>
+        </div>
+
+        <div class="form-group" ng-hide="fieldVisible">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="isSuppChainProject" /> {{'suppChainProject' | translate}}
+                </label>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">{{'approve' | translate}}</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">{{'cancel' | translate}}</button>
+    </div>
+</form>

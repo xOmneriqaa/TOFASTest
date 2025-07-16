@@ -1,0 +1,145 @@
+<div class="panel panel-danger">
+
+    <div class="panel-heading">
+
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger btn-sm" ng-click="addDiscardedPart()">
+                <span class="glyphicon glyphicon-plus-sign"></span>
+                {{'addDiscardedPart' | translate}}
+            </button>
+        </div>
+
+        <h1 class="panel-title">
+            {{'discardedParts' | translate}}
+            -
+            <span class="text-muted">{{'discardedPartInfo' | translate}}</span>
+        </h1>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="discardedPart in discardedParts">
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group" ng-class="{'has-error': !discardedParts[$index].isVoucherValid}">
+                        <label>{{'discardPartSapVoucherNo' | translate}}</label>
+                        <div class="input-group">
+                            <input type="number" ng-model="discardedParts[$index].discardedPartVoucherNo"
+                                   class="form-control" ng-blur="checkDiscardPartVoucherNo(discardedParts[$index])"
+                                   required name="sap-voucher-no-{{$index}}"
+                                    validationMessage="{{'pleaseEnterValidAndUniqueSapVoucherNo' | translate}}"/>
+                            <span class="input-group-addon" id="basic-addon1">
+                                <i class="fa fa-remove" ng-if="!discardedParts[$index].isVoucherValid"></i>
+                                <i class="fa fa-check" ng-if="discardedParts[$index].isVoucherValid"></i>
+                            </span>
+                        </div>
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="sap-voucher-no-{{$index}}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>{{'disegno' |translate}}</label>
+                        <input kendo-drop-down-list="" class="form-control" k-options="discardedPartsSelectionOptions()"
+                               required ng-model="discardedParts[$index].disegno" name="discarded-part{{$index}}"
+                               data-index="{{$index}}" style="width: 100%;" data-discarded-part="true"></input>
+
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="discarded-part{{$index}}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label>
+                            <i class="fa fa-cubes"></i>
+                        </label>
+                        <input type="number" name="dis-partqty{{$index}}" class="form-control" min="1"
+                               ng-model="discardedParts[$index].qty" required />
+
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="dis-partqty{{$index}}"></p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-xs-3">
+
+                    <div class="form-group text-right pull-right">
+                        <label>&nbsp;</label>
+                        <button type="button" ng-click="removeDiscardedPart($index)" class="btn btn-danger btn-xs">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="form-group" ng-if="isBasePricePresent($index)">
+                        <label>{{'selectedSupplier' | translate}}</label>
+                        <select class="form-control" ng-model="discardedParts[$index].basePriceId" required
+                                ng-change="onBaseUnitPriceSelect($index)" name="dis-sup-{{$index}}">
+                            <option value=""></option>
+                            <option ng-repeat="baseUnitPrice in getBaseUnitPricesFor($index)" value="{{baseUnitPrice.id}}">
+                                [ {{baseUnitPrice.id}} ] {{baseUnitPrice.baseUnitPriceInTl |tfTryCurrency}} / {{baseUnitPrice.baseUnitText |translate}}
+                            </option>
+                        </select>
+
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="dis-sup-{{$index}}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="!isBasePricePresent($index)">
+                        <label>{{'baseUnitType' | translate}}</label>
+                        <select class="form-control" ng-model="discardedParts[$index].baseUnitType" required
+                                ng-if="!isBasePricePresent($index)" name="dis-part-type-{{$index}}">
+                            <option value=""></option>
+                            <option value="11">{{'unitTypeQty' | translate}}</option>
+                            <option value="18">{{'unitTypeKg' | translate}}</option>
+                            <option value="26">{{'unitTypeMeter' | translate}}</option>
+                        </select>
+
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="dis-part-type-{{$index}}"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-4">
+                    <div class="form-group text-right">
+                        <br />
+                        <h4 class="badge">{{discardedPart.totalPrice() | tfTryCurrency}}</h4>
+                    </div>
+                </div>
+
+            </div>
+
+        </li>
+    </ul>
+
+    <div class="panel-footer">
+        <span class="pull-right">
+            {{getTotalDiscardedPartCost() | tfTryCurrency}}
+        </span>
+
+        <div class="clearfix"></div>
+
+
+    </div>
+
+</div>

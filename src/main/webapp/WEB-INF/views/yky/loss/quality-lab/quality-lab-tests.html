@@ -1,0 +1,71 @@
+<div class="panel panel-info">
+
+    <div class="panel-heading">
+        <a ng-click="addNewQualityLabTest()" class="btn btn-info btn-sm pull-right">
+            <span class="glyphicon glyphicon-plus"></span>&nbsp; {{'add' | translate}}
+        </a>
+
+        <h5>
+            <strong>{{'qualityTests' | translate}}</strong>
+        </h5>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <ul class="list-group">
+        <li ng-repeat="qualityLabTest in qualityLabTests" class="list-group-item">
+
+            <div class="row">
+
+                <div class="col-xs-5">
+                    <div class="form-group">
+                        <label>{{$index}} {{'qualityLabTest' | translate}}</label>
+                        <select ng-model="qualityLabTests[$index].testId" class="form-control"
+                                name="qlabtstnm{{$index}}"
+                                ng-options="qtst.id as qtst.name for qtst in qualityLabTestInfos"
+                                required>
+                            <option value="">--</option>
+                        </select>
+
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="qlabtstnm{{$index}}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3">
+
+                    <div class="form-group">
+                        <label><span class="fa fa-cubes"></span></label>
+                        <input type="number" ng-model="qualityLabTests[$index].qty"
+                               class="form-control" name="qlabtstqty{{$index}}" required min="1" />
+
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="qlabtstqty{{$index}}"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-3">
+                    <label>&nbsp;</label>
+                    <p class="form-control-static">{{getQualityTestPrice($index) | tfTryCurrency }}</p>
+                </div>
+
+                <div class="col-xs-1">
+                    <label>&nbsp;</label>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="removeQualityLabTest($index)">
+                        <span class="fa fa-times fa-1"></span>
+                    </button>
+                </div>
+
+            </div>
+
+        </li>
+    </ul>
+
+    <div class="panel-footer">
+        {{getQualityLabTestCost() | tfTryCurrency}}
+    </div>
+
+</div>

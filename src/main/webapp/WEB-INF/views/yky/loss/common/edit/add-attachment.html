@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label>{{'attachments' | translate}}</label>
+    <input name="files"
+           type="file"
+           kendo-upload
+           k-async="attachmentOptions"
+           k-on-upload="onUpload(kendoEvent)"/>
+</div>

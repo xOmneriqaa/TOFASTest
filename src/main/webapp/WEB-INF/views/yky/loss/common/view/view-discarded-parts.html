@@ -1,0 +1,45 @@
+<div class="panel panel-default" ng-if="loss && loss.discardedParts.length">
+
+    <div class="panel-heading">
+        <div class="pull-right">
+            {{loss.totalDiscardedPartCost | tfTryCurrency}}
+        </div>
+        <h1 class="panel-title">
+            {{'discardedParts' | translate}}
+            <button type="button" class="btn btn-info btn-xs" tooltip="{{'discardedPartInfo' | translate}}">
+                <i class="fa fa-info"></i>
+            </button>
+        </h1>
+    </div>
+
+	<ul class="list-group">
+        <li class="list-group-item" ng-repeat="discardedPart in loss.discardedParts">
+            <span class="pull-right" tf-hide-if-supplier="">
+                <i class="fa fa-cubes"></i>
+                {{discardedPart.qty}}
+                <i class="fa fa-cube"></i>
+                {{discardedPart.basePrice}}
+
+                <span class="badge" tf-hide-if-supplier="">{{discardedPart.totalCost | tfTryCurrency}}</span>
+            </span>
+
+            <button tf-hide-if-supplier="" class="btn btn-info btn-xs" type="button"
+                    popover="{{discardedPart.supplier.sapCode}} / {{discardedPart.supplier.name}} / {{discardedPart.priceDate}} / {{discardedPart.providedBy}}">
+                <span class="glyphicon glyphicon-info-sign"></span>
+            </button>
+            &nbsp;
+            <span tf-hide-if-supplier="">
+                <span class="badge">
+                    <i class="fa fa-barcode"></i>
+                    {{discardedPart.discardedPartVoucherNo}}
+                </span>
+                {{discardedPart.part.disegno}}
+            </span>
+
+            - {{discardedPart.part.descTr}}
+
+
+
+        </li>
+    </ul>
+</div>

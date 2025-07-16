@@ -1,0 +1,94 @@
+<div class="row">
+
+    <div class="col-sm-2">
+
+        <h3>{{ 'developerActions' | translate }}</h3>
+
+        <nav class="bs-docs-sidebar">
+            <ul class="nav nav-pills nav-stacked">
+
+                <li ui-sref-active="active">
+                    <a ui-sref="tfDeveloper.info">
+                        {{'info' | translate }}
+                    </a>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="tfDeveloper.entities">
+                        {{ 'devEntitiyInfo' | translate}}
+                    </a>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="tfDeveloper.controllers">
+                        {{ 'devControllerInfo' | translate}}
+                    </a>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="tfDeveloper.services">
+                        {{ 'devServiceInfo' | translate}}
+                    </a>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="tfDeveloper.repositories">
+                        {{ 'devRepositoryInfo' | translate}}
+                    </a>
+                </li>
+
+                <li>
+                    <hr />
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="tfDeveloper.dbLogs">
+                        {{ 'devFrameworkLogs' | translate}}
+                    </a>
+                </li>
+
+                <li>
+                    <hr />
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="tfDeveloper.roles">
+                        {{ 'applicationRoles' | translate}}
+                    </a>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="tfDeveloper.auths">
+                        {{ 'applicationAuths' | translate}}
+                    </a>
+                </li>
+
+                <li>
+                    <hr />
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="tfDeveloper.params">
+                        {{ 'applicationParams' | translate}}
+                    </a>
+                </li>
+
+                <li>
+                    <hr />
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="tfDeveloper.console">
+                        {{ 'applicationLogManagement' | translate}}
+                    </a>
+                </li>
+
+
+            </ul>
+        </nav>
+    </div>
+
+    <div class="col-sm-10 slide-reveal" ui-view=""></div>
+
+
+</div>

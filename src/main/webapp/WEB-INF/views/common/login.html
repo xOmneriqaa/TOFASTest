@@ -1,0 +1,64 @@
+<div class="panel panel-body">
+
+    <h2 class="form-signin-heading">
+        <span class="fa fa-key"></span>
+        {{ 'signIn' | translate }}
+    </h2>
+
+    <div ng-show="showError()" class="alert alert-danger">{{ error }}</div>
+
+    <div ng-show="getLoggedOut()" class="alert alert-info">{{'loggedOut' | translate}}</div>
+    <br/>
+    <br/>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="tab-content">
+                <div class="tab-pane active" id="tofas">
+                    <form class="form-signin" role="form" ng-submit="login()" method='POST'>
+
+                        <div class="form-group">
+                            <label for="tofasSicil">{{'tofasSicil.label' | translate }}</label>
+                            <input id="tofasSicil" type="text" name="username" class="form-control"
+                                   placeholder="{{'tofasSicil.placeholder' | translate}}" required="required"
+                                   autofocus="autofocus" autocomplete="off" ng-model="loginParameters.username"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tfPassword">{{'password' | translate }}</label>
+                            <input id="tfPassword" type="password" name="password" class="form-control"
+                                   placeholder="{{ 'password.placeholder' | translate }}" required="required"
+                                   autofocus="autofocus" ng-model="loginParameters.password"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{'loginType' | translate}}</label>
+                            <select class="form-control" kendo-combo-box=""
+                                    k-data-text-field="'displayTr'"
+                                    k-data-value-field="'id'"
+                                    k-data-source="loginDS"
+                                    ng-model="loginParameters.loginType"></select>
+
+                        </div>
+
+
+
+                        <input type="hidden" name="${_csrf.parameterName}" value="{{getCsrfToken()}}"/>
+
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">
+                            {{'login' | translate }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4 col-md-offset-4 visible-lg visible-md">
+            <img class="img" th:src="@{/resources/images/login.png}"/>
+        </div>
+
+    </div>
+
+</div>

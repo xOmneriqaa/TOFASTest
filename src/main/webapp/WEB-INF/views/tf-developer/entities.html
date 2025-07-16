@@ -1,0 +1,34 @@
+<h1>{{'devEntitiyInfo' | translate}}</h1>
+
+Defined @Entity classes and their related tables.
+
+<br />
+<br />
+
+<table class="table table-bordered">
+    <thead>
+    <th>{{'className' |translate}}</th>
+    <th>{{'tableName' | translate}}</th>
+    <th>{{'isEntityAccessible' | translate}}</th>
+    <th>{{'isExtendsTfEntity' | translate}}</th>
+    <th>{{'isExtendsTfBaseEntity' | translate}}</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="entity in entities" ng-class="entity.accesible ? '' : 'bg-danger'">
+        <td>{{entity.className}}</td>
+        <td>{{entity.tableName}}</td>
+        <td>
+            <span ng-if="entity.accesible" class="label label-success"><span class="glyphicon glyphicon-ok"></span></span>
+            <span ng-if="!entity.accesible" class="label label-danger"><span class="glyphicon glyphicon-remove"></span></span>
+        </td>
+        <td>
+            <span ng-if="entity.extendsTfEntity" class="label label-success"><span class="glyphicon glyphicon-ok"></span></span>
+            <span ng-if="!entity.extendsTfEntity" class="label label-danger"><span class="glyphicon glyphicon-remove"></span></span>
+        </td>
+        <td>
+            <span ng-if="entity.extendsTfBaseEntity" class="label label-success"><span class="glyphicon glyphicon-ok"></span></span>
+            <span ng-if="!entity.extendsTfBaseEntity" class="label label-danger"><span class="glyphicon glyphicon-remove"></span></span>
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,59 @@
+<h1>{{'devFrameworkLogs' | translate}}</h1>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label>{{'beginDate' | translate}}</label>
+                    <input class="form-control"
+                           kendo-date-picker=""
+                           ng-model="searchParams.startDate"
+                           k-options="dateParams"/>
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label>{{'endDate' | translate}}</label>
+                    <input kendo-date-picker=""
+                           ng-model="searchParams.endDate"
+                           class="form-control"/>
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <label>{{'exceptionId' | translate}}</label>
+                <input type='text' class="form-control" ng-model="searchParams.exceptionId" />
+            </div>
+
+            <div class="col-sm-2">
+                <label>{{'traceKeyword' | translate}}</label>
+                <input type='text' class="form-control" ng-model="searchParams.keyword" />
+            </div>
+
+            <div class="col-sm-2">
+                <label>{{'tofasSicil.label' | translate}}</label>
+                <input type='text' class="form-control" ng-model="searchParams.user" />
+            </div>
+
+            <div class="col-sm-2">
+                <label>{{'traceUrl' | translate}}</label>
+                <input type='text' class="form-control" ng-model="searchParams.url" />
+            </div>
+
+        </div>
+
+        <button class="btn btn-md btn-primary" type="button" ng-click="getDbLogs()">{{'search' | translate}}</button>
+
+    </div>
+</div>
+
+<div kendo-grid="tfDbLogs" k-options="gridOptions">
+    <div k-detail-template="">
+        <h3>{{dataItem.exceptionMessage}}</h3>
+        <div>
+            <pre>{{dataItem.exceptionStackTrace}}</pre>
+        </div>
+    </div>
+</div>

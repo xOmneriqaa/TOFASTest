@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<groups xmlns="http://www.isdc.ro/wro"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+
+    <group name="angular">
+        <js minimize="false">/resources/js/angular/angular-breadcrumb.js</js>
+        <js minimize="false">/resources/js/angular/angular-messages.js</js>
+    </group>
+
+
+
+    <!-- javascript business code -->
+
+    <group name="biz">
+
+        <!-- dev app -->
+        <js>/resources/biz/tf-developer/app.js</js>
+        <js>/resources/biz/tf-developer/controller.js</js>
+        <js>/resources/biz/tf-developer/services.js</js>
+
+        <!-- admin app -->
+        <js>/resources/biz/tf-admin/app.js</js>
+        <js>/resources/biz/tf-admin/controller.js</js>
+        <js>/resources/biz/tf-admin/services.js</js>
+
+        <!-- announcement app -->
+        <js>/resources/biz/tf-announcements/app.js</js>
+        <js>/resources/biz/tf-announcements/controller.js</js>
+
+        <!-- admin -->
+        <js>/resources/biz/yky/admin/app.js</js>
+        <js>/resources/biz/yky/admin/service.js</js>
+        <js>/resources/biz/yky/admin/durations.controller.js</js>
+        <js>/resources/biz/yky/admin/logistics-acceptence-point.controller.js</js>
+        <js>/resources/biz/yky/admin/logistics-loss-types.controller.js</js>
+        <js>/resources/biz/yky/admin/loss-source.controller.js</js>
+        <js>/resources/biz/yky/admin/mail-logs.controller.js</js>
+        <js>/resources/biz/yky/admin/models.controller.js</js>
+        <js>/resources/biz/yky/admin/objection-types.controller.js</js>
+        <js>/resources/biz/yky/admin/press-parameter.controller.js</js>
+        <js>/resources/biz/yky/admin/quality-lab-tests.controller.js</js>
+        <js>/resources/biz/yky/admin/quality-tables.controller.js</js>
+        <js>/resources/biz/yky/admin/standart-steps.controller.js</js>
+        <js>/resources/biz/yky/admin/steps.controller.js</js>
+        <js>/resources/biz/yky/admin/work-types.controller.js</js>
+
+        <!-- loss -->
+        <js>/resources/biz/yky/loss/app.js</js>
+        <!-- common -->
+        <js>/resources/biz/yky/loss/common/app.js</js>
+        <js>/resources/biz/yky/loss/common/attachments.controller.js</js>
+        <js>/resources/biz/yky/loss/common/common-loss.controller.js</js>
+        <js>/resources/biz/yky/loss/common/discarded-parts.controller.js</js>
+        <js>/resources/biz/yky/loss/common/work-durations.controller.js</js>
+        <js>/resources/biz/yky/loss/common/other-costs.controller.js</js>
+        <js>/resources/biz/yky/loss/common/common-data-source.service.js</js>
+        <js>/resources/biz/yky/loss/common/common-selection-options.service.js</js>
+        <!-- press -->
+        <js>/resources/biz/yky/loss/press/press.app.js</js>
+        <js>/resources/biz/yky/loss/press/press-approve-modal.controller.js</js>
+        <js>/resources/biz/yky/loss/press/press-common.controller.js</js>
+        <js>/resources/biz/yky/loss/press/press-edit.controller.js</js>
+        <js>/resources/biz/yky/loss/press/press-logistics-detail.directive.js</js>
+        <js>/resources/biz/yky/loss/press/press-logistics-new.controller.js</js>
+        <js>/resources/biz/yky/loss/press/press-loss-detail-directive.controller.js</js>
+        <js>/resources/biz/yky/loss/press/press-master-detail.directive.js</js>
+        <js>/resources/biz/yky/loss/press/press-open-losses.controller.js</js>
+        <js>/resources/biz/yky/loss/press/press-quality-detail.directive.js</js>
+        <js>/resources/biz/yky/loss/press/press-quality-new.controller.js</js>
+        <js>/resources/biz/yky/loss/press/press-upload-excel-modal.controller.js</js>
+        <js>/resources/biz/yky/loss/press/press-master-detail-directive.controller.js</js>
+
+        <js>/resources/biz/yky/loss/new-quality.controller.js</js>
+        <js>/resources/biz/yky/loss/new-quality-lab.controller.js</js>
+        <js>/resources/biz/yky/loss/new-logistic.controller.js</js>
+        <js>/resources/biz/yky/loss/new-production.controller.js</js>
+
+        <js>/resources/biz/yky/loss/approve-modal.controller.js</js>
+        <js>/resources/biz/yky/loss/cancel-loss-modal.controller.js</js>
+        <js>/resources/biz/yky/loss/pause-loss-modal.controller.js</js>
+        <js>/resources/biz/yky/loss/incompleted-losses.controller.js</js>
+        <js>/resources/biz/yky/loss/list-logistics.controller.js</js>
+        <js>/resources/biz/yky/loss/loss-view.controller.js</js>
+        <js>/resources/biz/yky/loss/loss-view-navbar.controller.js</js>
+        <js>/resources/biz/yky/loss/not-found.controller.js</js>
+        <js>/resources/biz/yky/loss/objections-modal.controller.js</js>
+        <js>/resources/biz/yky/loss/unapproved-losses.controller.js</js>
+
+
+
+        <!-- buyer -->
+        <js>/resources/biz/yky/buyer/app.js</js>
+        <js>/resources/biz/yky/buyer/controller.js</js>
+
+        <!-- supplier -->
+        <js>/resources/biz/yky/supplier/app.js</js>
+        <js>/resources/biz/yky/supplier/controller.js</js>
+
+        <!-- refree -->
+        <js>/resources/biz/yky/refree/app.js</js>
+        <js>/resources/biz/yky/refree/controller.js</js>
+
+        <!-- report -->
+        <js>/resources/biz/yky/report/app.js</js>
+        <js>/resources/biz/yky/report/efficiency-report.controller.js</js>
+        <js>/resources/biz/yky/report/invoice-ready-report.controller.js</js>
+        <js>/resources/biz/yky/report/main-report.controller.js</js>
+        <js>/resources/biz/yky/report/previous-invoices-report.controller.js</js>
+        <js>/resources/biz/yky/report/supplier-based-report.controller.js</js>
+        <js>/resources/biz/yky/report/discarded-part-report.controller.js</js>
+        <js>/resources/biz/yky/report/loss-detail-report.controller.js</js>
+        <js>/resources/biz/yky/report/sqp-report.controller.js</js>
+
+        <js>/resources/biz/yky/report/press-report-controller.js</js>
+
+        <!-- dashboard -->
+        <js>/resources/biz/yky/dashboard/app.js</js>
+        <js>/resources/biz/yky/dashboard/controller.js</js>
+
+        <!-- home app -->
+        <js>/resources/biz/app.js</js>
+        <!--<js>/resources/biz/**.js</js>-->
+    </group>
+
+
+    <group name="custom-css">
+        <css>/resources/css/custom-css.css</css>
+    </group>
+
+
+
+
+
+
+
+
+</groups>

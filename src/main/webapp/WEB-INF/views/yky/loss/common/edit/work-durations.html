@@ -1,0 +1,86 @@
+<div ng-class="getLaborPanelClass()">
+    <div class="panel-heading">
+
+        <a ng-click="addNewWorkDuration()" class="btn btn-info btn-sm pull-right">
+            <span class="glyphicon glyphicon-plus"></span>&nbsp; {{'add' | translate}}
+        </a>
+
+        <h5>
+            <strong>{{'workDurations' | translate}}</strong>
+        </h5>
+
+
+
+    </div>
+
+    <ul class="list-group">
+        <li ng-repeat="workDuration in workDurations" class="list-group-item">
+
+            <div class="row">
+
+                <div class="col-xs-5">
+
+                    <div class="form-group">
+                        <label>{{'workType' | translate}}</label>
+                        <select ng-model="workDurations[$index].workType" class="form-control" required
+                                name="wr-dur-typ-{{$index}}">
+                            <option value="">--</option>
+                            <option ng-repeat="workType in workTypes" value="{{workType.id}}">{{workType.name}}</option>
+                        </select>
+
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="wr-dur-typ-{{$index}}"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-5">
+
+                    <div class="form-group">
+                        <label><span class="glyphicon glyphicon-time"></span> {{'min' | translate}}</label>
+                        <input type="number" ng-model="workDurations[$index].workDuration"
+                               class="form-control" name="wr-dur-tm-{{$index}}" required min="1" />
+
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="wr-dur-tm-{{$index}}"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--<div class="col-xs-3">-->
+
+                    <!--<div class="form-group">-->
+                        <!--<label><span class="fa fa-cubes"></span></label>-->
+                        <!--<input type="number" ng-model="workDurations[$index].qty" class="form-control" />-->
+                    <!--</div>-->
+
+                <!--</div>-->
+
+                <div class="col-xs-2 text-center">
+                    <label>&nbsp;</label>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="removeWorkDuration($index)">
+                        <span class="fa fa-times fa-1"></span>
+                    </button>
+
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+
+
+
+
+        </li>
+    </ul>
+
+    <div class="panel-footer">
+        <span class="pull-right">
+            {{getTotalWorkCost() | tfTryCurrency }}
+        </span>
+
+        <span class="glyphicon glyphicon-time"></span> {{getTotalWorkTime()}}
+    </div>
+
+</div>

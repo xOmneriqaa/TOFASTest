@@ -1,0 +1,62 @@
+<h1>{{'invoiceReadyLosses' | translate}}
+
+    &nbsp;
+    <small>
+        <button type="button" class="btn btn-default" ng-click="refreshInvoices()">
+            <span class="fa fa-refresh"></span>
+        </button>
+
+        <button type="button" class="btn btn-primary" ng-click="getInvoice()">
+            <span class="fa fa-download"></span>
+        </button>
+    </small>
+
+</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <th>
+
+            <div class="btn-toolbar" role="toolbar" aria-label="...">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default btn-toolbar" ng-click="selectAll()">
+                        <span class="fa fa-check-square-o"></span>
+                    </button>
+
+                    <button type="button" class="btn btn-default" ng-click="selectNone()">
+                        <span class="fa fa-square-o"></span>
+                    </button>
+                </div>
+            </div>
+
+        </th>
+        <th>{{'lossIds' | translate}}</th>
+        <th>{{'totalNumberOfLosses' | translate}}</th>
+        <th>{{'supplierCode' | translate}}</th>
+        <th>{{'supplierName' | translate}}</th>
+        <th>{{'qualityLabTestCost' | translate}}</th>
+        <th>{{'discardedPartCost' | translate}}</th>
+        <th>{{'laborCost' | translate}}</th>
+         <th>{{'otherCosts' | translate}}</th>
+        <th>{{'totalCost' | translate}}</th>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="loss in losses">
+        <td>
+            <input type="checkbox" ng-model="loss.checked" />
+        </td>
+        <td>
+            <span ng-repeat="lossId in loss.lostIds">{{lossId}}, </span>
+        </td>
+        <td>{{loss.lostIds.length}}</td>
+        <td>{{loss.supplier.sapCode}}</td>
+        <td>{{loss.supplier.name}}</td>
+        <td>{{loss.totalQualityLabTestCost | tfTryCurrency}}</td>
+        <td>{{loss.totalDiscardedPartCost | tfTryCurrency}}</td>
+        <td>{{loss.totalWorkTypeCost | tfTryCurrency}}</td>
+         <td>{{loss.totalOtherCost | tfTryCurrency}}</td>
+        <td>{{loss.totalCost | tfTryCurrency}}</td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,143 @@
+<div class="slide-reveal" ui-view=""></div>
+<br/>
+
+<h1>{{'durations' | translate}}</h1>
+<br/>
+<br/>
+
+<a tf-has-roles="" roles="['TFG_YKY_ADMIN', 'TFG_YKY_DURATION_DEF']" class="btn btn-primary" ui-sref="tfAdmin.durations.new">{{'add' | translate}}</a>
+<br/>
+<br/>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title">{{'searchParams' | translate}}</h1>
+    </div>
+
+    <div class="panel-body">
+
+        <form class="form" ng-submit="getDurations()">
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{'disegno' | translate}}</label>
+                        <input type="text" ng-model="searchParams.disegno" class="form-control"
+                               ng-required="searchParams.model.length == 0"/>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{'model' | translate}}</label>
+                        <input type="text" ng-model="searchParams.model" class="form-control"
+                               ng-required="searchParams.disegno.length == 0"/>
+                    </div>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary">{{'search' | translate}}</button>
+
+        </form>
+
+        <br/>
+
+        <div kendo-grid="durationsGrid" k-options="durationGridOptions">
+            <div k-detail-template="">
+
+                <h3>{{'durationDetail' | translate}} {{dataItem.id}}</h3>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <blockquote>
+
+
+                            <span class="pull-right" ng-repeat="model in dataItem.models">
+                                <span class="label label-default">{{model.code}} - {{model.name}}</span>&nbsp;
+                            </span>
+                            {{dataItem.part.disegno}}
+
+                            <small>{{dataItem.part.descTr}}</small>
+                        </blockquote>
+                    </div>
+
+                    <div class="col-md-4">
+                        &nbsp;
+                        <span class="pull-right">
+                            <a class="btn btn-warning" ui-sref="tfAdmin.durations.edit({id: dataItem.id})">{{'edit' | translate}}</a>
+                          <!--   <a class="btn btn-danger" ng-click="deleteItem(dataItem)">{{'delete' | translate}}</a> -->
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-sm-11">
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">{{'stepDurations' | translate}}</h3>
+                            </div>
+
+                            <table class="table">
+                                <tr ng-repeat="stepDuration in dataItem.stepDurations"
+                                    ng-if="$index % 3 == 0">
+                                    <td ng-class="{'text-muted': dataItem.stepDurations[$index].duration == 0, 'bg-success': dataItem.stepDurations[$index].duration > 0}">
+                                        <span class="label label-info" ng-repeat="productionSubLossType in dataItem.stepDurations[$index].stepDurationId.step.productionSubLossTypes">
+                                            {{productionSubLossType | translate}}
+                                        </span>
+                                        &nbsp;
+                                        <strong>
+                                            {{dataItem.stepDurations[$index].stepDurationId.step.name}}
+                                        </strong>: {{dataItem.stepDurations[$index].duration}}
+                                    </td>
+                                    <td ng-class="{'text-muted': dataItem.stepDurations[$index + 1].duration == 0, 'bg-success': dataItem.stepDurations[$index + 1].duration > 0}">
+                                        <span class="label label-info" ng-repeat="productionSubLossType in dataItem.stepDurations[$index + 1].stepDurationId.step.productionSubLossTypes">
+                                            {{productionSubLossType | translate}}
+                                        </span>
+                                        &nbsp;
+                                        <strong>
+                                            {{dataItem.stepDurations[$index + 1].stepDurationId.step.name}}
+                                        </strong>: {{dataItem.stepDurations[$index + 1].duration}}
+                                    </td>
+                                    <td ng-class="{'text-muted': dataItem.stepDurations[$index + 2].duration == 0, 'bg-success': dataItem.stepDurations[$index + 2].duration > 0}">
+                                        <span class="label label-info" ng-repeat="productionSubLossType in dataItem.stepDurations[$index + 2].stepDurationId.step.productionSubLossTypes">
+                                            {{productionSubLossType | translate}}
+                                        </span>
+                                        &nbsp;
+                                        <strong>
+                                            {{dataItem.stepDurations[$index + 2].stepDurationId.step.name}}
+                                        </strong>: {{dataItem.stepDurations[$index + 2].duration}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="durationDeleteModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{'deleteHeader' | translate}}</h3>
+    </div>
+    <div class="modal-body">
+        {{'deleteMessage' | translate}}
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" type="button" ng-click="ok()">{{'delete' | translate}}</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">{{'cancel' | translate}}</button>
+    </div>
+</script>

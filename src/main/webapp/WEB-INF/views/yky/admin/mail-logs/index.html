@@ -1,0 +1,67 @@
+<h1>{{'mailLogs' |translate}}</h1>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label>{{'beginDate' | translate}}</label>
+                    <input class="form-control"
+                           kendo-date-picker=""
+                           ng-model="searchParams.startDate"/>
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label>{{'endDate' | translate}}</label>
+                    <input kendo-date-picker=""
+                           ng-model="searchParams.endDate"
+                           class="form-control"/>
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <label>{{'toAddress' | translate}}</label>
+                <input type='text' class="form-control" ng-model="searchParams.toAddress" />
+            </div>
+
+            <div class="col-sm-2">
+                <label>{{'ccAddress' | translate}}</label>
+                <input type='text' class="form-control" ng-model="searchParams.fromAddress" />
+            </div>
+
+            <div class="col-sm-2">
+                <label>{{'subject' | translate}}</label>
+                <input type='text' class="form-control" ng-model="searchParams.subject" />
+            </div>
+
+            <div class="col-sm-2">
+                <label>{{'body' | translate}}</label>
+                <input type='text' class="form-control" ng-model="searchParams.body" />
+            </div>
+
+
+        </div>
+
+        <button class="btn btn-md btn-primary" type="button" ng-click="getMailLogs()">{{'search' | translate}}</button>
+
+    </div>
+</div>
+
+<div kendo-grid="tfMailLogs" k-options="gridOptions">
+    <div k-detail-template="">
+        <h3>{{dataItem.subject}}</h3>
+
+        <strong>{{'toAddress' | translate}}</strong>: {{dataItem.to}}<br />
+        <strong>{{'ccAddress' | translate}}</strong>: {{dataItem.cc}}<br />
+        <strong>{{'mailDate' | translate}}</strong>: {{dataItem.mailDate}}<br />
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div ng-bind-html="dataItem.body"></div>
+            </div>
+        </div>
+
+    </div>
+</div>

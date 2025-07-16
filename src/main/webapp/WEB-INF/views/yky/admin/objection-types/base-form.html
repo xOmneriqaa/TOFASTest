@@ -1,0 +1,19 @@
+<div class="form-group">
+    <label>{{'name' | translate}}</label>
+    <input type="text" class="form-control" ng-model="item.name" />
+</div>
+
+<div class="form-group">
+    <label>{{'responsibles' |translate}}</label>
+    <input type="text" class="form-control" ng-model="item.responsibles" ng-list />
+
+    <br/>
+    <div ng-repeat="resp in item.responsibles">
+        <span class="badge">{{resp}}</span>&nbsp;
+    </div>
+
+</div>
+
+<div class="form-group">
+    <input type="checkbox" ng-model="item.statusBool" /> {{'status' | translate}}
+</div>

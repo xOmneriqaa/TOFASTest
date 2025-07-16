@@ -1,0 +1,13 @@
+<div class="form-group">
+    <label>{{'code' | translate}}</label>
+    <input type="text" class="form-control" ng-model="item.code" max="3" required/>
+</div>
+
+<div class="form-group">
+    <label>{{'name' | translate}}</label>
+    <input type="text" class="form-control" ng-model="item.name" required />
+</div>
+
+<div class="form-group">
+    <input type="checkbox" ng-model="item.statusBool" /> {{'status' | translate}}
+</div>

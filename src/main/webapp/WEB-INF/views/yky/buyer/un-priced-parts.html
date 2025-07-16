@@ -1,0 +1,29 @@
+<div ui-view=""></div>
+
+<h1>{{'unPricedParts' |translate}}</h1>
+
+<table class="table">
+    <thead>
+        <th>#</th>
+        <th>{{'disegno' |translate}}</th>
+        <th>{{'insertedDate' |translate}}</th>
+        <th>{{'baseUnit' | translate}}</th>
+        <th>{{'addPrice' | translate}}</th>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="part in unPricedParts">
+            <td>{{part.id}}</td>
+            <td>{{part.disegno}}</td>
+            <td>{{part.insDate}}</td>
+            <td>{{part.baseUnitText | translate}}</td>
+            <td>
+                <a class="btn btn-info btn-sm" ui-sref="buyer.unPricedParts.addPrice({id: part.discardedPartId})">
+                    <span class="glyphicon glyphicon-plus"> </span>
+                    {{'addPrice' | translate}}
+                </a>
+            </td>
+        </tr>
+    </tbody>
+
+</table>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"  ng-app="ykyHomeApp">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="T40127"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <base id="tf-base-pointer" th:href="@{/}"/>
+
+    <title ncy-breadcrumb-text="{{ncyBreadcrumbChain}}" ncy-breadcrumb-text-separator=" / "></title>
+
+
+    <!-- css files -->
+    <link href="//app.tofas.com.tr/tfi/frm-resources/latest/bs-jui-fa/bs-jui-fa.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//app.tofas.com.tr/tfi/frm-resources/latest/angular/angular.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//app.tofas.com.tr/tfi/frm-resources/archive/frm/kendo/v0.2/kendo.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//app.tofas.com.tr/tfi/frm-resources/latest/site/site.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- js files -->
+    <script src="//app.tofas.com.tr/tfi/frm-resources/latest/bs-jui-fa/jquery-bs.min.js" type="text/javascript"></script>
+    <script src="//app.tofas.com.tr/tfi/frm-resources/latest/angular/angular.min.js" type="text/javascript"></script>
+    <script src="//app.tofas.com.tr/tfi/frm-resources/latest/angular-frm/tf-common.min.js" type="text/javascript"></script>
+    <script src="//app.tofas.com.tr/tfi/frm-resources/latest/angular-frm/tf-constants.min.js" type="text/javascript"></script>
+    <script src="//app.tofas.com.tr/tfi/frm-resources/archive/frm/kendo/v0.2/kendo.min.js" type="text/javascript"></script>
+
+    <!-- CSS & JS injection -->
+    <span th:remove="tag" th:utext="${@wroService.wroGroupContent}"></span>
+
+</head>
+
+<body block-ui="main" class="block-ui block-ui-anim-fade">
+
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="tfNavbarController">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Navigation </span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="home">
+                {{ 'appName' | translate}}
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+
+            <form class="navbar-form navbar-left" role="search" ng-controller="ykyLossViewNavbarController" ng-submit="viewLoss()" tf-is-authenticated="">
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="{{'lossId'|translate}}" ng-model="lossId" />
+                </div>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <!-- navbar menu import -->
+                <div th:replace="layout/navbar-menu"></div>
+
+
+
+
+
+                <!-- MESSAGES -->
+                <li class="dropdown" tf-has-announcement="" ng-controller="tfAnnouncementHeaderController">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-envelope fa-fw"></i>
+                        <small class="label label-info" ng-if="hasUnread()">{{unreadCount()}}</small>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li class="text-center">
+                            <h5 id="tf-messages-header" translate="youHaveAnnouncementsRest" translate-values="{count: '{{unreadCount()}}'}"></h5>
+                        </li>
+
+                        <li ng-repeat="announcement in getFirst5Announcements()">
+                            <a ui-sref="tfAnnouncementList.view({id: announcement.id})">
+                                <div>
+                                    <strong>{{announcement.header}}</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>
+                                            <span>{{announcement.insertedBy}}</span> @
+                                            <span>{{announcement.insertedDate}}</span>
+                                        </em>
+                                    </span>
+                                </div>
+                                <div>{{announcement.nonHtmlBody}}</div>
+                            </a>
+
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" ui-sref="tfAnnouncementList">
+                                <strong>{{'readAllAnnouncements' | translate}}</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-messages -->
+                </li>
+
+
+
+
+
+
+                <!-- i18n -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-globe"></span> <span></span> &nbsp;<i class="fa fa-angle-down">&nbsp;</i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a ng-click="changeLanguage('tr_TR')"><img class="img" style="width:24px;" src="//app.tofas.com.tr/tfi/frm-resources/latest/images/tr.png"/> Türkçe
+                            <span ng-show="isLanguage('tr_TR')" class="glyphicon glyphicon-ok"></span></a></li>
+                        <li><a ng-click="changeLanguage('en')"><img class="img" style="width:24px;" src="//app.tofas.com.tr/tfi/frm-resources/latest/images/en.png"/> English <span
+                                ng-show="isLanguage('en')" class="glyphicon glyphicon-ok"></span></a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown" tf-is-authenticated="">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+
+                        <span class="glyphicon glyphicon-user"></span>
+
+                        {{getUserName()}} &nbsp;<i class="fa fa-angle-down">&nbsp;</i></a>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> <span th:text="#{logout}"></span></a></li>
+                    </ul>
+                </li>
+
+                <li tf-not-authenticated="" ng-controller="tfSsoLoginController">
+                    <a ng-click="login()"><span class="glyphicon glyphicon-log-in"></span> {{'login' | translate}}</a>
+                </li>
+
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+
+<div class="container-fluid">
+
+    <!--<div ncy-breadcrumb="">-->
+    <!--</div>-->
+
+    <div class="slide-reveal" ui-view="">
+
+    </div>
+
+</div>
+<!-- /container -->
+
+<!-- download frame -->
+<iframe style="display: none; width: 0; height: 0; border: 0px;" name="tfDownloadFrame">
+    This frame is used for upload and download operations! Do not delete any thing including texts!
+</iframe>
+<form style="display: none; width: 0; height: 0; border: 0px;" id="tfDownloadForm" method="post" target="tfDownloadFrame">
+    <input type="text" name="_csrf" id="tfCsrfParam" />
+    <input type="text" name="tfFormParam" id="tfFormParam" />
+</form>
+<!-- /download frame -->
+
+
+<!-- footer -->
+<div class="footer">
+    <div class="container-fluid footer-div text-muted">
+        <img class="bit-logo pull-left" src="//app.tofas.com.tr/tfi/frm-resources/latest/images/bit.png"/>
+
+        <span class="hidden-xs">Türk Otomobil Fabrikası A.Ş. Bilgi ve İletişim Teknolojileri Direktörlüğü © <span th:text="${#dates.year(#dates.createNow())} "></span> &nbsp;</span>
+
+        <img class="pull-right tofas-logo" src="//app.tofas.com.tr/tfi/frm-resources/latest/images/4logo-sade-ntf.png"/>
+    </div>
+</div>
+<!-- /footer -->
+
+</body>
+</html>

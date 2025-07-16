@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h3 class="modal-title">
+        <i class="fa fa-paperclip"></i>
+        {{'addFile' | translate}}
+    </h3>
+</div>
+
+<div class="modal-body">
+
+    <div class="form-group">
+        <label>{{'attachments' | translate}}</label>
+        <input name="files"
+               type="file"
+               kendo-upload
+               k-async="attachmentOptions"
+               k-on-upload="onUpload(kendoEvent)"/>
+    </div>
+
+</div>
+
+<div class="modal-footer">
+
+    <button type="button" class="btn btn-default" ng-click="cancel()">
+        {{'cancel' | translate}}
+    </button>
+
+    <button type="button" class="btn btn-primary" ng-click="ok()">
+        {{ 'save' | translate }}
+    </button>
+</div>

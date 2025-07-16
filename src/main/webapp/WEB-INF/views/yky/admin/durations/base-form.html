@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>{{'part' | translate}}</label>
+            <select kendo-drop-down-list
+                    k-options="partSelectionOptions()"
+                    ng-model="$parent.item.disegno"
+                    k-ng-delay="$root.isArrsReady"
+                    style="width: 100%;"></select>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>{{'model' | translate}}</label>
+            <select kendo-multi-select k-options="modelSelectionOptions()" ng-model="$parent.item.models" style="width: 100%;"></select>
+        </div>
+    </div>
+
+</div>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    {{'standartStep' | translate}}
+                </h1>
+            </div>
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="stStep in stSteps | orderBy: 'name' | orderBy: 'productionSubLossTypes'">
+                    <strong>
+                        <label class="label label-info" ng-repeat="prodSubLossType in stStep.productionSubLossTypes">{{prodSubLossType | translate}}</label>
+                        {{stStep.name}}
+                    </strong>: {{stStep.duration}}
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    {{'step' | translate}}
+                </h1>
+            </div>
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="step in stepDurations | orderBy: 'stepDto.name'
+                    | orderBy: 'stepDto.productionSubLossTypes'">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label>
+                                <span class="label label-info"
+                                      ng-repeat="prSubLossType in step.stepDto.productionSubLossTypes">
+                                    {{prSubLossType | translate}}
+                                </span>
+                                &nbsp;
+                                {{step.stepDto.name}} :
+                            </label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <input class="form-control" ng-model="step.duration" type="number" />
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+</div>

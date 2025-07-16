@@ -1,0 +1,281 @@
+<form class="form" name="newLossForm" kendo-validator="validator" k-rules="$root.sqp.rules"
+      k-messages="$root.sqp.messages" ng-submit="saveProductionLoss()">
+
+    <h1>{{'addProductionLoss' | translate}}</h1>
+
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="row">
+
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label>{{'lossUnitName' | translate}}</label>
+                                <select class="form-control" ng-model="loss.lossType" name="lossType"
+                                        ng-change="invalidateSteps()" required
+                                        validationMessage="{{'pleaseSelectLossType' |translate}}">
+                                    <option value="">--</option>
+                                    <option ng-repeat="item in lossTypes" value="{{item}}">{{item | translate}}</option>
+                                </select>
+
+                                <div class="help-block">
+                                    <p class="k-invalid-msg" data-for="lossType"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{'lossDate' | translate}}</label>
+                                <input kendo-date-picker k-options="lossDateOptions" class="form-control"
+                                       name="lossDate" ng-model="loss.lossDate" required style="width: 100%;"
+                                        validationMessage="{{'lossDateFieldCanNotBeBlank' |translate}}"/>
+
+                                <div class="help-block">
+                                    <p class="k-invalid-msg" data-for="lossDate"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{'model' | translate}}</label>
+                                <input kendo-drop-down-list class="form-control" name="carModel"
+                                       k-options="modelSelectionOptions" required ng-model="loss.model"
+                                       validationMessage="{{'pleaseSelectModel' |translate}}"
+                                       ng-change="invalidateSteps()" style="width: 100%;"></input>
+
+                                <div class="help-block">
+                                    <p class="k-invalid-msg" data-for="carModel"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{'part' | translate}}</label>
+                                <input kendo-drop-down-list class="form-control" name="part"
+                                        k-options="partSelectionOptions()" required ng-model="loss.disegno"
+                                        validationMessage="{{'pleaseSelectPart' |translate}}"
+                                        k-ng-delay="$root.isArrsReady"
+                                        ng-change="invalidateSteps()" style="width: 100%;"></input>
+
+                                <div class="help-block">
+                                    <p class="k-invalid-msg" data-for="part"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{'partQuantity' | translate}}</label>
+                                <input type="number" min="1" ng-model="loss.qty" name="partQty"
+                                       class="form-control" required
+                                        validationMessage="{{'partQtyCanNotBeBlank' |translate}} <br /> {{'partQtyMustBeHigherThan0' |translate}}"/>
+
+                                <div class="help-block">
+                                    <p class="k-invalid-msg" data-for="partQty"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label>{{'lossSource' | translate}}</label>
+                                <select class="form-control" ng-model="loss.lossSource" name="lossSource" required
+                                        validationMessage="{{'pleaseSelectLossSource' |translate}}">
+                                    <option value="">--</option>
+                                    <option ng-repeat="lossSource in lossSources" value="{{lossSource.id}}">{{lossSource.name}}</option>
+                                </select>
+
+                                <div class="help-block">
+                                    <p class="k-invalid-msg" data-for="lossSource"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{'qualityTraceId' | translate}}</label>
+                                <input type="text" ng-model="loss.qualityTraceId" class="form-control"
+                                       name="qualityTraceId" required
+                                        validationMessage="{{'qualityTraceIdCanNotBeBlank' |translate}}"
+                                        ng-disabled="loss.lossSource && loss.lossSource == getLogisticsTypeId()"/>
+
+                                <div class="help-block">
+                                    <p class="k-invalid-msg" data-for="qualityTraceId"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{'tut' | translate}}</label>
+                                <select kendo-drop-down-list k-options="tutOptions" name="tut"
+                                        ng-model="loss.tut" ng-change="invalidateSteps()"
+                                        validationMessage="{{'pleaseSelectATut' |translate}}"
+                                        required style="width: 100%;"></select>
+
+                                <div class="help-block">
+                                    <p class="k-invalid-msg" data-for="tutOptions"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{'effectedTuts' | translate}}</label>
+                                <select kendo-multi-select k-options="effectedTutOptions" name="effectedTuts"
+                                        validationMessage="{{'pleaseSelectEffectedTuts' |translate}}"
+                                        ng-model="loss.effectedTuts" required style="width: 100%;"></select>
+
+                                <div class="help-block">
+                                    <p class="k-invalid-msg" data-for="effectedTuts"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{'shiftCode' | translate}}</label>
+                                <select class="form-control" ng-model="loss.shiftCode" name="shiftCode" required
+                                        validationMessage="{{'pleaseSelectShiftCode' |translate}}">
+                                    <option value="">--</option>
+                                    <option ng-repeat="shiftCode in shiftCodes" value="{{shiftCode.shiftCode}}">{{shiftCode.shiftName}}</option>
+                                </select>
+
+                                <div class="help-block">
+                                    <p class="k-invalid-msg" data-for="shiftCode"></p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>{{'description' | translate}}</label>
+                                <textarea class="form-control" ng-model="loss.description" name="description"
+                                          required
+                                        validationMessage="{{'pleaseEnterSomeDescription' |translate}}"></textarea>
+
+                                <div class="help-block">
+                                    <p class="k-invalid-msg" data-for="description"></p>
+                                </div>
+                            </div>
+
+                            <div ng-include="'/ng/view/yky/loss/common/edit/add-attachment.html'"></div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-6">
+
+                    <div class="panel panel-default">
+
+                        <div class="panel-heading">
+                            <h1 class="panel-title">
+                                <button type="button" class="btn btn-primary pull-right" ng-click="updateSteps()">
+                                    <span class="glyphicon glyphicon-refresh"></span>
+                                    {{'refreshSteps' | translate}}
+                                </button>
+
+                                <span class="glyphicon glyphicon-warning-sign" ng-if="!isStepsValid()"></span>
+                                {{'steps' | translate}}
+
+                                <div class="clearfix"></div>
+                            </h1>
+                        </div>
+
+                        <table class="table">
+                            <tbody>
+                            <tr ng-repeat="step in loss.steps">
+                                <td>
+                                    <span class="fa fa-warning" ng-if="!loss.steps[$index].durationExists"></span>
+                                    <input type="checkbox" ng-model="loss.steps[$index].selected" ng-if="loss.steps[$index].durationExists" />
+                                </td>
+
+                                <td>
+                                    {{step.stepName}}
+                                </td>
+
+                                <td class="form-inline">
+                                    <span ng-if="!loss.steps[$index].durationExists">
+                                        {{'durationDoesNotExists' | translate}}
+                                    </span>
+
+                                    <div class="input-group" ng-if="loss.steps[$index].durationExists">
+
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-cubes"></span>
+                                        </span>
+                                        <input class="form-control col-sm-2" type="number"
+                                               ng-model="loss.steps[$index].qty"
+                                               ng-disabled="!loss.steps[$index].selected" />
+                                    </div>
+
+                                </td>
+                                <td class="text-right">
+
+                                    <div ng-if="loss.steps[$index].selected">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                        {{loss.steps[$index].getTime()}}dk
+                                        &nbsp;&nbsp;
+                                    <span class="badge">
+                                        {{loss.steps[$index].getCost() | tfTryCurrency}}
+                                    </span>
+                                    </div>
+
+                                    <div ng-if="!loss.steps[$index].selected">
+                                        <span class="fa fa-cube"></span> {{loss.steps[$index].stepDuration}}dk
+                                    </div>
+
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="panel-footer">
+                        <span class="pull-right">
+                            {{getTotalCostOfSteps() | tfTryCurrency}}
+                        </span>
+
+                            <span class="glyphicon glyphicon-time"></span> {{getTotalTimeOfSteps()}}
+                        </div>
+
+
+                    </div>
+
+                    <hr />
+
+                    <div ng-include="'/ng/view/yky/loss/common/edit/other-costs.html'"></div>
+
+
+                    <hr />
+
+                    <div ng-include="'/ng/view/yky/loss/common/edit/discarded-parts.html'"></div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="panel-footer">
+
+            <div class="pull-right">
+                <button type="submit" class="btn btn-primary pull-right" ng-disabled="!isLossCostValid() || !validator.validate()">
+                    <span class="glyphicon glyphicon-save"></span> &nbsp;
+                    {{'save' | translate}}
+                </button>
+            </div>
+
+            {{getTotalLossCost() | tfTryCurrency}} &nbsp;
+
+            <span ng-if="!isLossCostValid()" class="label label-danger">
+                {{'lossMustCostMoreThan0OrMustContainDiscardedPart' | translate}}
+            </span>
+
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+
+</form>

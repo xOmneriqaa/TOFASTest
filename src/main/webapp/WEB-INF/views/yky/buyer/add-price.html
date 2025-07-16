@@ -1,0 +1,29 @@
+<div class="panel panel-info">
+    <div class="panel-body">
+        <h1>{{'addPrice' |translate}}</h1>
+        <form ng-submit="addPrice()">
+
+            <div class="form-group">
+                <label>{{'basePrice' |translate}}</label>
+                <input class="form-control" type="number" step="any" ng-model="basePrice.basePrice" required />
+            </div>
+
+            <div class="form-group">
+                <label>{{'supplier' | translate}}</label>
+                <select required kendo-drop-down-list
+                        k-options="supplierSelectOptions"
+                        ng-model="basePrice.firmCode"
+                        style="width: 100%"></select>
+            </div>
+
+            <div class="form-group">
+                <label>{{'priceDate' | translate}}</label>
+                <input required kendo-date-picker ng-model="basePrice.priceDate"
+                       style="width: 100%;" />
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm">{{'save' |translate}}</button>
+
+        </form>
+    </div>
+</div>

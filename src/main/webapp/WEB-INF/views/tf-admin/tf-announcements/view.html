@@ -1,0 +1,85 @@
+<h1>{{'announcement' | translate}}</h1>
+
+<div ng-if="!item.valid">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    <span>{{'thisAnnouncementIsExpired' | translate}}</span>
+</div>
+
+<br />
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title">{{item.header}}</h1>
+    </div>
+
+    <div class="panel-body">
+        <p ng-bind-html="item.body" />
+    </div>
+
+    <div class="panel-footer">
+        <i class="fa fa-user"></i>
+        <span>{{item.insertedBy}}</span>
+
+        &nbsp;&nbsp;
+
+        <i class="fa fa-clock-o"></i>
+        <span>{{item.insertedDate}}</span>
+    </div>
+
+</div>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{'attachments' | translate}}</h1>
+            </div>
+
+            <ul class="list-group">
+                <a class="list-group-item" ng-repeat="attachment in item.attachments" tf-href="/files/{{attachment.path}}" target="_blank">
+                    <h5>
+                        <span class="glyphicon glyphicon-paperclip"></span>
+                        <span>{{attachment.name}}</span>
+                        <small>{{attachment.description}}</small>
+                    </h5>
+                </a>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{'relatedGroups' | translate}}</h1>
+            </div>
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="role in item.relatedRoles">{{role.name}}</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{'readUsers' | translate}}</h1>
+            </div>
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="user in item.readUsers">{{user}}</li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>

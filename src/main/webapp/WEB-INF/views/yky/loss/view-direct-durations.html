@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <h1 class="panel-title">{{'durations' | translate}}</h1>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="directDuration in loss.directDurations">
+            {{directDuration.workTypeCached}}
+
+            <div class="pull-right">
+                <!--<i class="fa fa-cubes"></i>-->
+                <!--{{directDuration.qty}}-->
+                <i class="fa fa-cube"></i>
+                {{directDuration.workTypeWageCached}}
+                <i class="glyphicon glyphicon-time"></i>
+                {{directDuration.duration}}
+                &nbsp;&nbsp;
+
+                <span class="badge pull-right">
+                    {{directDuration.totalCost | tfTryCurrency}}
+                </span>
+            </div>
+        </li>
+    </ul>
+</div>

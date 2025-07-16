@@ -1,0 +1,15 @@
+.calculated-th {
+    min-width: 150px;
+}
+
+.k-grid  .k-grid-header  .k-header  .k-link {
+    height: auto;
+}
+
+.k-grid  .k-grid-header  .k-header {
+    white-space: normal;
+}
+
+.animate-if.ng-enter, .animate-if.ng-leave {
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}

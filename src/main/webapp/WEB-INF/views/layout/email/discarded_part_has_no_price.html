@@ -1,0 +1,17 @@
+<div xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <span th:text="${id}"></span> numaralı kayba girilen, <strong><span th:text="${disegno}"></span></strong>
+    resim numaralı ıskarta parçanın birim fiyatı bulunamamıştır. Kaybın faturalandı statüsüne dönebilmesi için ilgili
+    resme ait birim fiyatın Tedarikçi Kayıp Sistemi, Satınalma modülü üzerinden girilmesi gerekmektedir.
+
+    <br/>
+    <br/>
+
+    Aşağıdaki linkten sisteme giriş yapabilirsiniz.
+
+    <br/>
+    <br/>
+
+    <a th:href="@{__${contextPath}__#/}">Giriş</a>
+
+</div>

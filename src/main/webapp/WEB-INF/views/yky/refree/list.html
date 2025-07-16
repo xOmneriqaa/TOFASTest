@@ -1,0 +1,31 @@
+<table class="table">
+    <thead>
+        <th>#</th>
+        <th>{{'lossDescription' | translate}}</th>
+        <th>{{'lossType' | translate}}</th>
+        <th>{{'lossDate' | translate}}</th>
+        <th>{{'objectionName' | translate}}</th>
+        <th>{{'objectedDescription' | translate}}</th>
+        <th>{{'objectedBy' | translate}}</th>
+        <th>{{'objectedDate' | translate}}</th>
+        <th>{{'view' |translate}}</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="obj in objections">
+            <td>{{obj.lossId}}</td>
+            <td>{{obj.lossDescription}}</td>
+            <td>{{obj.lossType}}</td>
+            <td>{{obj.lossDate}}</td>
+            <td>{{obj.objectionName}}</td>
+            <td>{{obj.objectionDescription}}</td>
+            <td>{{obj.insertedBy}}</td>
+            <td>{{obj.insertedDate}}</td>
+            <td>
+                <button type="button" ui-sref="losses.view({id: obj.lossId})" class="btn btn-primary btn-xs">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                    {{'view' | translate}}
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

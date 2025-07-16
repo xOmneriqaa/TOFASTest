@@ -1,0 +1,41 @@
+<h1>{{'addPressQualityLoss' | translate}}</h1>
+
+<form kendo-validator="validator" k-messages="$root.sqp.messages">
+
+    <press-master-detail-directive supplier="pressLoss.supplierDto.sapCode" firm-type="pressLoss.firmType"
+               firm-description="pressLoss.firmDescription" loss-details="lossDetails"
+               loss-date="pressLoss.lossDate" loss-description="pressLoss.lossDescription"
+               upload-errors="uploadErrors" validate-func="isValid()" validator="validator" save-func="save()">
+
+        <h3>{{'lossDetails' | translate}}</h3>
+
+        <button type="button" class="btn btn-info" ng-click="updateDetails()" ng-disabled="!validator.validate()">
+            <i class="fa fa-refresh"></i> {{'updateCalculations' | translate}}
+        </button>
+
+        <button type="button" class="btn btn-success" ng-click="addExcel()">
+            <i class="fa fa-plus"></i> <i class="fa fa-file-excel-o"></i>
+            {{'uploadExcelFile' | translate}}
+        </button>
+
+        <button type="button" class="btn btn-primary" ng-click="addDetail()">
+            <i class="fa fa-plus"></i> <i class="fa fa-hand-o-right"></i>
+            {{'addDetail' | translate}}
+        </button>
+
+        <a tf-href="/resources/files/press_quality.xlsx" download target="_blank" class="btn btn-default pull-right">
+            <i class="fa fa-download"></i> <i class="fa fa-file-excel-o"></i>
+            {{'downloadExampleExcelFile' | translate}}
+        </a>
+
+        <br /><br />
+
+        <div class="table-responsive well">
+            <press-quality-detail-directive edit="true"
+                    loss-details="lossDetails" hrd-params="hrdParams">
+            </press-quality-detail-directive>
+        </div>
+
+    </press-master-detail-directive>
+
+</form>

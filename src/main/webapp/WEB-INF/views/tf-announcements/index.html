@@ -1,0 +1,47 @@
+<h1>{{'announcements' | translate}}</h1>
+
+<a class="btn btn-default" ng-click="forceToCheckAnnouncements()">
+    <i class="fa fa-refresh"></i>
+    <span>{{'checkAnnouncements' | translate}}</span>
+</a>
+
+
+<hr />
+
+<div class="row">
+
+    <div class="col-md-2">
+        <ul class="list-group">
+            <a ng-repeat="announcement in announcements()" ng-class="getClassForAnnouncement(announcement)"
+               ui-sref="tfAnnouncementList.view({id: announcement.id})" ui-sref-active="active">
+                <i ng-if="announcement.read" class="fa fa-envelope-o"></i>
+                <i ng-if="!announcement.read" class="fa fa-envelope"></i>
+
+                &nbsp;
+
+                <strong>{{announcement.header}}</strong>
+
+                <br /><br />
+
+                <small>
+                    <i class="fa fa-user"></i> &nbsp;
+                    <span>{{announcement.insertedBy}}</span>
+                    &nbsp;
+                    &nbsp;
+                    <i class="fa fa-clock-o"></i> &nbsp;
+                    <em>{{announcement.insertedDate}}</em>
+                </small>
+
+
+            </a>
+        </ul>
+    </div>
+
+    <div class="col-md-10" ui-view="">
+
+
+
+    </div>
+
+</div>
+

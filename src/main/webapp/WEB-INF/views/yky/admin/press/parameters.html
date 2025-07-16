@@ -1,0 +1,60 @@
+<h1>{{'pressParameters' | translate}}</h1>
+
+<br />
+
+<button type="button" class="btn btn-primary" ng-click="save()">
+    <i class="fa fa-floppy-o"></i> {{'save' | translate}}
+</button>
+
+<br /><br />
+
+
+<table class="table">
+    <thead>
+        <th>{{'paramName' | translate}}</th>
+        <th>{{'value' | translate}}</th>
+    </thead>
+
+    <tbody>
+        <tr>
+           <td>{{'customsCostParam' | translate}}</td>
+            <td>
+                <input kendo-numeric-text-box k-options="numberFieldOptions"
+                       k-ng-model="pressParameters.customsCostParam" style="width: 100%;" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>{{'logisticsCostParam' | translate}}</td>
+            <td>
+                <input kendo-numeric-text-box k-options="numberFieldOptions"
+                       k-ng-model="pressParameters.logisticsCostParam" style="width: 100%;" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>{{'scrapSalesParamHrd088' | translate}}</td>
+            <td>
+                <input kendo-numeric-text-box k-options="numberFieldOptions"
+                       k-ng-model="pressParameters.scrapSalesParamHrd088" style="width: 100%;" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>{{'scrapSalesParamHrd033' | translate}}</td>
+            <td>
+                <input kendo-numeric-text-box k-options="numberFieldOptions"
+                       k-ng-model="pressParameters.scrapSalesParamHrd033" style="width: 100%;" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>{{'blueCollarBaseWageAsEur' | translate}}</td>
+            <td>
+                <input kendo-numeric-text-box k-options="numberFieldOptions"
+                       k-ng-model="pressParameters.blueCollarBaseWageAsEur" style="width: 100%;" />
+            </td>
+        </tr>
+
+    </tbody>
+</table>

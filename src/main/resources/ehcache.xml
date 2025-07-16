@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd"
+         updateCheck="false" name="cacheManager">
+
+    <diskStore path="java.io.tmpdir"/>
+
+    <defaultCache
+            maxEntriesLocalHeap="10000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            maxEntriesLocalDisk="10000000"
+            diskExpiryThreadIntervalSeconds="120"
+            statistics="true"
+            memoryStoreEvictionPolicy="LRU">
+        <persistence strategy="localTempSwap"/>
+    </defaultCache>
+
+    <cache name="parts" maxEntriesLocalHeap="10000"></cache>
+
+    <cache name="parts_str" maxEntriesLocalHeap="10000"></cache>
+
+    <cache name="tuts" maxEntriesLocalHeap="10000"></cache>
+
+    <cache name="models" maxEntriesLocalHeap="10000"></cache>
+
+
+
+
+</ehcache>

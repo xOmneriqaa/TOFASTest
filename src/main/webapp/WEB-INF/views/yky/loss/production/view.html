@@ -1,0 +1,385 @@
+<tabset>
+    <tab heading="{{'info' | translate}}">
+        <br/>
+        <table class="table">
+            <tbody>
+
+            <tr>
+                <td>
+                    <label>{{'lossUnit' | translate}}</label>
+                </td>
+                <td>
+                    {{loss.subType | translate}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>{{'lossDate' | translate}}</label>
+                </td>
+                <td>
+                    {{loss.lossDate}}
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <label>{{'model' | translate}}</label>
+                </td>
+                <td>
+                    {{loss.model.code}} - {{loss.model.name}}
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <label>{{'part' | translate}}</label>
+                </td>
+                <td>
+                    {{loss.part.disegno}} - {{loss.part.descTr}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>{{'partQuantity' | translate}}</label>
+                </td>
+                <td>
+                    {{loss.qty}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>{{'supplier' | translate}}</label>
+                </td>
+                <td>
+                    {{loss.supplier.sapCode}} - {{loss.supplier.name}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>{{'sqpNo' | translate}}</label>
+                </td>
+                <td>
+                    {{loss.sqpNo}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>{{'lossCode' | translate}}</label>
+                </td>
+                <td>
+                    {{loss.lossCode.description}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>{{'lossSource' | translate}}</label>
+                </td>
+                <td>
+                    {{loss.lossSource.name}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>{{'qualityTraceId' | translate}}</label>
+                </td>
+                <td>
+                    {{loss.qualityTraceId}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>{{'tut' | translate}}</label>
+                </td>
+                <td>
+                    {{loss.tut.tut}}: {{loss.tut.description}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>{{'effectedTuts' | translate}}</label>
+                </td>
+                <td>
+                    <span class="label label-info" ng-repeat="effectedTut in loss.effectedTuts">
+                        {{effectedTut}}
+                    </span>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </tab>
+
+    <tab heading="{{'durations' | translate}}">
+        <br/>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default" ng-if="loss && loss.standartDurations.length">
+
+                    <div class="panel-heading">
+                    <span class="pull-right">
+                        <span class="glyphicon glyphicon-time"></span>
+                        {{ blueCollarWage() }}
+                    </span>
+
+                        <h1 class="panel-title">{{'standartSteps' | translate}}</h1>
+                    </div>
+
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="standartDuration in loss.standartDurations">
+                            {{standartDuration.stepNameCached}}
+
+                            <div class="pull-right">
+                                <span class="glyphicon glyphicon-time"></span>
+                                {{standartDuration.stepDurationCached}}
+                                &nbsp;
+                                <i class="fa fa-cubes"></i>
+                                {{standartDuration.qty}}
+
+                            <span class="badge">
+                                {{ standartDuration.totalCost | tfTryCurrency}}
+                            </span>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                    <span class="pull-right">
+                        <span class="glyphicon glyphicon-time"></span>
+                        {{ blueCollarWage() }}
+                    </span>
+
+                        <h1 class="panel-title">{{'steps' | translate}}</h1>
+                    </div>
+
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="stepDuration in loss.stepDurations">
+                            {{stepDuration.stepNameCached}}
+
+                            <div class="pull-right">
+                                <span class="glyphicon glyphicon-time"></span>
+                                {{stepDuration.stepDurationCached}}
+                                &nbsp;
+                                <i class="fa fa-cubes"></i>
+                                {{stepDuration.qty}}
+
+                            <span class="badge">
+                                {{ stepDuration.totalCost | tfTryCurrency}}
+                            </span>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+    </tab>
+
+    <tab heading="{{'discardedParts' | translate}}">
+        <br/>
+        <div ng-include="'/ng/view/yky/loss/common/view/view-discarded-parts.html'"></div>
+    </tab>
+
+    <tab heading="{{'lossCompletion' | translate}}" ng-if="canSeeLossCompletion()">
+        <br/>
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <div class="panel panel-primary" ng-if="!isLossCompleted()">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">
+                            <span class="glyphicon glyphicon-plus"></span> {{ 'addLossCompletion' | translate}}
+                        </h1>
+                    </div>
+
+                    <div class="panel-body">
+                        <form ng-submit="addCompletion()">
+                            <div class="form-group">
+                                <label>{{'completionDate' | translate}}</label>
+                                <input kendo-date-time-picker
+                                       ng-model="completion.completionDate"
+                                       required
+                                       style="width: 100%;"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{'completedTut' | translate}}</label>
+                                <select class="form-control" ng-model="completion.completedTut"
+                                        ng-change="updateShiftCodes()" required>
+                                    <option value="">--</option>
+                                    <option ng-repeat="tut in getAllTuts()" value="{{tut}}">{{tut}}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{'completedShift' | translate}}</label>
+                                <select class="form-control" ng-model="completion.completedShift" required>
+                                    <option value="">--</option>
+                                    <option ng-repeat="shiftCode in shiftCodes" value="{{shiftCode.shiftCode}}">
+                                        {{shiftCode.shiftName}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{'completedStep' | translate}}</label>
+                                <select class="form-control" ng-model="completion.completionStepId" required>
+                                    <option value="">--</option>
+                                    <option ng-repeat="step in getCompletableSteps()" value="{{step.combinedId}}">
+                                        {{step.name}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{'completedQty' | translate}}</label>
+                                <input type="number" class="form-control" ng-model="completion.qty" min="1" required
+                                       max="{{getMaximumCompletionQty()}}" ng-disabled="getMaximumCompletionQty() == 0"/>
+                            </div>
+
+                            <br/>
+                            <button type="submit" class="btn btn-primary btn-sm">{{'addCompletion' | translate}}
+                            </button>
+
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="panel panel-success" ng-if="isLossCompleted()">
+                    <div class="panel-body bg-success">
+                        <h1>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <small>{{'lossIsCompleted' | translate}}</small>
+                        </h1>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-8">
+
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="completion in loss.lossCompletions">
+
+                        <div class="pull-right">
+                            <span tooltip="{{'duration' | translate}}">
+                                <i class="fa fa-clock-o"></i>
+                                {{completion.completionDuration}} dk
+                            </span>
+
+                            <span tooltip="{{'qty' | translate}}">
+                                <i class="fa fa-cubes"></i>
+                                {{completion.completionQty}}
+                            </span>
+
+                            &nbsp;
+                            <span tooltip="{{'completionDate' | translate}}">
+                                <i class="fa fa-calendar"></i>
+                                {{completion.completionDate}}
+                            </span>
+                        </div>
+
+                        <span tooltip="{{'insertedBy' | translate}}">
+                            <i class="fa fa-user"></i> {{completion.insertedBy}} &nbsp;
+                        </span>
+
+                        <span tooltip="{{'tut' | translate}}">
+                            {{completion.tutCode}} -
+                        </span>
+
+                        <span tooltip="{{'shiftCode' | translate}}">
+                            {{completion.shiftCode}}
+                        </span>
+
+                    </li>
+                </ul>
+
+            </div>
+
+
+        </div>
+    </tab>
+    
+    
+    <!--  TODO buraya other cost modulu eklenecek-->
+     <tab heading="{{'otherCosts' | translate}}">
+        <br/>
+        <div class="row">
+           
+
+            <div class="col-md-12">
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                    <span class="pull-right">
+                      <span class="glyphicon"></span>
+                       <!--  {{ blueCollarWage() }} -->
+                    </span>
+
+                        <h1 class="panel-title">{{'otherCosts' | translate}}</h1>
+                        
+                    </div>
+
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="otherCost in loss.otherCosts">
+                            <!-- {{otherCost.description}} --> 
+
+                            <div>
+                                <span class="glyphicon"></span>
+                                {{otherCost.description}}
+                                &nbsp;
+                               
+                                <!-- {{otherCost.cost}} -->
+
+                            <span class="badge pull-right">
+                             <i class="fa fa-cubes"></i>
+                                {{ otherCost.cost | tfTryCurrency}}
+                            </span>
+								
+                            </div>
+                           
+                        </li>
+                         <li class="list-group-item" >
+                         <div>
+                             <span class="glyphicon"></span>
+                                TOPLAM:
+                                &nbsp;
+                                <span class="badge pull-right">
+                             <i class="fa fa-cubes"></i>
+                                {{ loss.totalOtherCosts | tfTryCurrency}}
+                            </span>
+                            </div>
+                       </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+    </tab>
+    
+    
+    
+</tabset>

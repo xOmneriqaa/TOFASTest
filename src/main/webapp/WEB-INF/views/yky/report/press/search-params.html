@@ -1,0 +1,90 @@
+<div>
+
+    <div class="row">
+
+        <div class="col-md-2">
+
+            <div class="form-group">
+                <label>{{'lossDateStart' | translate}}</label>
+                <input kendo-date-picker class="form-control" ng-model="searchParams.lossDateStart" style="width: 100%;"/>
+            </div>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <div class="form-group">
+                <label>{{'lossDateEnd' | translate}}</label>
+                <input kendo-date-picker class="form-control" ng-model="searchParams.lossDateEnd" style="width: 100%;"/>
+            </div>
+
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{'disegno' | translate}}</label>
+                <input type="text" class="form-control" ng-model="searchParams.disegno" />
+            </div>
+        </div>
+
+        <div class="col-md-2">
+
+            <div class="form-group">
+                <label>{{'lossState' | translate}}</label>
+                <select class="form-control" ng-model="searchParams.lossState">
+                    <option value="">--</option>
+                    <option ng-repeat="item in lossStates" value="{{item}}">{{item | translate}}</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>{{'lossIds' | translate}}</label>
+                <textarea class="form-control" ng-model="searchParams.lossIds"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-2" ng-if="isDetails">
+            <div class="form-group">
+                <label>{{'pressLossType' | translate}}</label>
+                <select class="form-control" ng-model="searchParams.pressLossType">
+                    <option value="">--</option>
+                    <option ng-repeat="pressLossType in pressLossTypes" value="{{pressLossType}}">
+                        {{pressLossType | translate}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{'rollNo' | translate}}</label>
+                <input type="text" class="form-control" ng-model="searchParams.rollNo" />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>{{'supplier' | translate}}</label>
+                <select class="form-control" ng-model="searchParams.supplierCode">
+                    <option value="">--</option>
+                    <option ng-repeat="supplier in pressSuppliers" value="{{supplier.sapCode}}">
+                        {{supplier.sapCode}} - {{supplier.name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+    <button type="button" class="pull-right btn btn-primary" ng-click="searchFunc()">
+        <i class="fa fa-search"></i> {{'search' | translate}}
+    </button>
+
+</div>

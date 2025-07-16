@@ -1,0 +1,41 @@
+<div class="row">
+
+    <div class="col-sm-2">
+        <h3>{{ 'supplier' | translate }}</h3>
+
+        <nav class="bs-docs-sidebar">
+
+            <ul class="nav nav-pills nav-stacked">
+
+                <li ui-sref-active="active">
+                    <a ui-sref="supplier.openLogistics">
+                        {{'openLogisticsLosses' | translate }}
+                    </a>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="supplier.openProduction">
+                        {{'openProductionLosses' | translate }}
+                    </a>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="supplier.openQuality">
+                        {{'openQualityLosses' | translate }}
+                    </a>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="supplier.openQualityLab">
+                        {{'openQualityLabLosses' | translate }}
+                    </a>
+                </li>
+
+
+            </ul>
+        </nav>
+    </div>
+
+    <div class="col-sm-10 slide-reveal" ui-view=""></div>
+
+</div>

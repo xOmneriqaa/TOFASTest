@@ -1,0 +1,21 @@
+<table class="table table-hover">
+    <thead>
+    <th>#{{'lossId' | translate}}</th>
+    <th>{{'description' | translate}}</th>
+    <th>{{'lossDate' | translate}}</th>
+    <th>{{'view' | translate}}</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="loss in $parent.openLosses">
+        <td>{{loss.id}}</td>
+        <td>{{loss.description}}</td>
+        <td>{{loss.lossDate}}</td>
+        <td>
+            <button type="button" ui-sref="losses.view({id: loss.id})" class="btn btn-primary btn-xs">
+                <span class="glyphicon glyphicon-eye-open"></span>
+                {{'view' | translate}}
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,40 @@
+<div xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <span th:text="${id}"></span> numaralı kayıp için girilen itiraz sonuçlanmıştır.
+    Aşağıdaki linkten kayıp detayına ulaşabilirsiniz.
+    <br/>
+    <br/>
+    <blockquote>
+        <strong>İtiraz Açıklaması:</strong> <i th:text="${objectionDesc}"></i> <br/>
+        <br/>
+        <br/>
+        <strong>Sonuç Açıklaması:</strong> <i th:text="${objectionResultDesc}"></i>
+    </blockquote>
+
+
+
+    <br/>
+    <br/>
+
+    <a th:href="@{__${contextPath}__#/losses/view/__${id}__}">Kayıp Detayı</a>
+
+    <hr/>
+
+    The objection about the Loss with the id <span th:text="${id}"></span>, has resolved.
+    You can check the details with the following link.
+    <br/>
+    <br/>
+    <blockquote>
+        <strong>Objection Description:</strong> <i th:text="${objectionDesc}"></i> <br/>
+        <br/>
+        <br/>
+        <strong>Result Description:</strong>:<i th:text="${objectionResultDesc}"></i>
+    </blockquote>
+
+
+    <br/>
+    <br/>
+
+    <a th:href="@{__${contextPath}__#/losses/view/__${id}__}">Loss Detail</a>
+
+</div>

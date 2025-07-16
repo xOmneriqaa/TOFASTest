@@ -1,0 +1,83 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{'setObjectionResult' | translate}}</h3>
+</div>
+<div class="modal-body">
+
+    <h3>{{'lossId' | translate}} : {{loss.id}}</h3>
+
+    <br />
+
+    <tabset>
+        <tab heading="{{'setObjectionResult' | translate}}">
+            <br/>
+
+            <div class="form">
+
+                <div class="form-group">
+                    <label>{{'objectionResult' | translate}}</label>
+                    <select class="form-control" ng-model="objectionResult.result">
+                        <option value="1">{{'acceptObjection' | translate}}</option>
+                        <option value="2">{{'denyObjection' | translate}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>{{'description' | translate}}</label>
+                    <textarea ng-model="objectionResult.description" class="form-control"></textarea>
+                </div>
+
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary btn-xs" ng-click="saveResult()">
+                        {{'save' | translate}}
+                    </button>
+
+                    <button type="button" class="btn btn-default btn-xs" ng-click="cancel()">
+                        {{'cancel' | translate}}
+                    </button>
+                </div>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+
+        </tab>
+
+        <tab heading="{{'changeObjectionType' | translate}}">
+            <br/>
+
+            <div class="form">
+
+                <div class="form-group">
+                    <label>{{'setNewObjectionType' | translate}}</label>
+                    <select class="form-control" ng-model="newObjection.objectionId">
+                        <option ng-repeat="objectionType in objectionTypes" ng-value="objectionType.id">{{objectionType.name}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>{{'description' | translate}}</label>
+                    <textarea ng-model="newObjection.description" class="form-control"></textarea>
+                </div>
+
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary btn-xs" ng-click="changeObjectionType()">
+                        {{'save' | translate}}
+                    </button>
+
+                    <button type="button" class="btn btn-default btn-xs" ng-click="cancel()">
+                        {{'cancel' | translate}}
+                    </button>
+                </div>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+        </tab>
+    </tabset>
+
+
+
+
+</div>

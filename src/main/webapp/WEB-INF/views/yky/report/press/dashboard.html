@@ -1,0 +1,90 @@
+
+
+<div class="panel panel-info">
+      <div class="panel-heading">
+            <h3 class="panel-title">{{'options' | translate}}</h3>
+      </div>
+      <div class="panel-body">
+
+          <div class="row">
+
+              <div class="col-md-6">
+
+                  <div class="form-group">
+                      <label>{{'year' | translate}}</label>
+                      <select kendo-multi-select
+                              k-options="yearsOptions"
+                              k-ng-model="selectedYears"
+                              style="width: 100%;">
+                      </select>
+                  </div>
+
+              </div>
+
+              <div class="col-md-6">
+
+                  <div class="form-group">
+                      <label>{{'supplier' | translate}}</label>
+                      <select kendo-multi-select
+                              k-options="supplierOptions"
+                              k-ng-model="selectedSuppliers"
+                              style="width: 100%;">
+                      </select>
+                  </div>
+
+              </div>
+
+          </div>
+
+      </div>
+</div>
+
+
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div kendo-chart k-options="lineChartOptions"></div>
+
+    </div>
+
+
+
+</div>
+
+<hr />
+
+<div class="row well">
+
+    <div class="col-md-6">
+
+        <div kendo-chart k-options="pieChartOptions"></div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <table class="table" datatable="ng">
+            <thead>
+            <th>{{'year' | translate}}</th>
+            <th>{{'supplier' | translate}}</th>
+            <th class="text-right">{{'totalCost' | translate}}</th>
+            <th class="text-right">{{'supplierPayment' | translate}}</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in filteredData track by item.id">
+                <td>{{item.year}}</td>
+                <td>{{item.supplierCode}} - {{item.supplierName}}</td>
+                <td class="text-right">{{item.totalCost | tfEurCurrency}}</td>
+                <td class="text-right">{{item.supplierPayment | tfEurCurrency}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+

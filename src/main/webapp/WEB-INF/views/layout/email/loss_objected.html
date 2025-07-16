@@ -1,0 +1,34 @@
+<div xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <span th:text="${id}"></span> numaralı kayıp için, <strong><span th:text="${objectionType}"></span></strong> konusunda itiraz edilmiştir.
+    Aşağıdaki linkten kayıp detayına ulaşabilirsiniz.
+    <br/>
+    <br/>
+    <blockquote>
+        <i th:text="${objectionDesc}"></i>
+    </blockquote>
+
+
+
+    <br/>
+    <br/>
+
+    <a th:href="@{__${contextPath}__#/losses/view/__${id}__}">Kayıp Detayı</a>
+
+    <hr/>
+
+    Loss with the id <span th:text="${id}"></span>, is been objected about following topic <strong><span th:text="${objectionType}"></span></strong>.
+    You can check the details with the following link.
+    <br/>
+    <br/>
+    <blockquote>
+        <i th:text="${objectionDesc}"></i>
+    </blockquote>
+
+
+    <br/>
+    <br/>
+
+    <a th:href="@{__${contextPath}__#/losses/view/__${id}__}">Loss Detail</a>
+
+</div>

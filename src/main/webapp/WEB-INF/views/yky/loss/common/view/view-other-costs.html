@@ -1,0 +1,29 @@
+<div class="panel panel-info" ng-if="loss && loss.otherCosts && loss.otherCosts.length > 0">
+
+    <div class="panel-heading">
+        <h1 class="panel-title">{{'otherCosts' | translate}}</h1>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="otherCost in loss.otherCosts">
+            {{otherCost.description}} 
+
+            <div class="pull-right">
+                <span class="badge">
+                    {{otherCost.cost | tfTryCurrency}}
+                </span>
+            </div>
+        </li>
+        <li class="list-group-item" >
+                         <div>
+                             <span class="glyphicon"></span>
+                                TOPLAM:
+                                &nbsp;
+                                <span class="badge pull-right">
+                             <i class="fa fa-cubes"></i>
+                                {{ loss.totalOtherCosts | tfTryCurrency}}
+                            </span>
+                            </div>
+                       </li>
+    </ul>
+</div>

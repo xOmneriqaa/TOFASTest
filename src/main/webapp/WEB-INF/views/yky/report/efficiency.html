@@ -1,0 +1,50 @@
+<h1>{{'efficiencyReport' | translate}}</h1>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title">{{'searchParams' | translate}}</h1>
+    </div>
+
+    <div class="panel-body">
+
+        <form ng-submit="search()">
+
+            <div class="row">
+
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'lossDateStart' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.lossDateStart" style="width: 100%;"/>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'lossDateEnd' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.lossDateEnd" style="width: 100%;"/>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-search"></i> {{'search' | translate}}
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<div class="table-responsive">
+    <div kendo-grid="efficiencyReportGrid" k-options="efficiencyReportGridOptions" style="width: 3000px;"></div>
+</div>

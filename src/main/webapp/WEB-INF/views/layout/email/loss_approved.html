@@ -1,0 +1,64 @@
+<div xmlns:th="http://www.w3.org/1999/xhtml">
+    <h3>Adınıza kayıp kaydı oluşturulmuştur</h3>
+    <br/>
+    <p>
+        TOFAŞ üretim sürecinde firmanız kaynaklı oluşan <span th:text="${id}"></span> numaralı kayıp
+        onaylanarak bilginize sunulmuştur. Kayıpla ilgili <span th:text="${numOfDays}"></span> gün
+        içinde sistem üzerinden itiraz hakkınız bulunmaktadır.
+        <br />
+        <small th:text="${description}"></small>
+        <br />
+        <br />
+        Kayıp detayına aşağıdaki linkten ulaşabilirsiniz.<br />
+        <br />
+        <a th:href="@{__${contextPath}__#/losses/view/__${id}__}">Kayıp Detayı</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <th th:if="${sqp ne null}">SQP No</th>
+            <th th:text="#{disegno}" th:if="${disegno ne null}"></th>
+            <th th:text="#{qty}" th:if="${qty ne null}"></th>
+            <th th:text="#{disegnoDescTr}" th:if="${disegnoDescTr ne null}"></th>
+            <th th:text="#{disegnoDescEn}" th:if="${disegnoDescEn ne null}"></th>
+            <th th:text="#{totalCost}"></th>
+        </thead>
+        <tbody>
+            <tr>
+                <th th:text="${sqp}" th:if="${sqp ne null}"></th>
+                <th th:text="${disegno}" th:if="${disegno ne null}"></th>
+                <th th:text="${qty}" th:if="${qty ne null}"></th>
+                <th th:text="${disegnoDescTr}" th:if="${disegnoDescTr ne null}"></th>
+                <th th:text="${disegnoDescEn}" th:if="${disegnoDescEn ne null}"></th>
+                <th th:text="${totalCost}"></th>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+    <hr />
+
+    <br />
+    <br />
+
+    <h3>A new loss entry has been created on your behalf</h3>
+    <br/>
+
+
+    <p>
+        During the TOFAŞ Production Process, a new loss entry sourced from you is been created
+        with the id number <span th:text="${id}"></span>. Within the <span th:text="${numOfDays}"></span>
+        days you can object the loss from the url that has been given at the end of this email.
+
+        <br />
+        <small th:text="${desc}"></small>
+        <br />
+        <br />
+        You can check the details with the following link.<br />
+        <br />
+        <a th:href="@{__${contextPath}__/view/__${id}__}">Loss Detail</a>
+    </p>
+
+
+</div>

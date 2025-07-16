@@ -1,0 +1,28 @@
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{'stateChanges' | translate}}</h3>
+    </div>
+    <ul class="list-group">
+        <a class="list-group-item list-group-item-success" ng-if="showApproval()" ng-click="approveLossModal()">
+            <strong>
+                <span class="glyphicon glyphicon-ok"></span>
+                &nbsp;
+                {{'approveLoss' | translate }}
+            </strong>
+        </a>
+        <li class="list-group-item" ng-repeat="stateChange in loss.stateChanges">
+            <div class="pull-right">
+                <span class="glyphicon glyphicon-calendar"></span>
+                {{stateChange.insertedDate}}
+                &nbsp;
+                <span class="glyphicon glyphicon-user"></span>
+                {{stateChange.insertedBy}}
+            </div>
+
+
+            <label class="label label-default">
+                {{stateChange.lossState | translate}}
+            </label>
+        </li>
+    </ul>
+</div>

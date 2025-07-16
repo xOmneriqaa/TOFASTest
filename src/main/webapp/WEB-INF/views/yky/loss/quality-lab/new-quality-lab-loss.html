@@ -1,0 +1,141 @@
+<form class="form" name="newLossForm" kendo-validator="validator" k-rules="$root.sqp.rules"
+      k-messages="$root.sqp.messages" ng-submit="saveQualityLabLoss()">
+
+    <h1>{{'addQualityLabLoss' | translate}}</h1>
+
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+
+            <div class="row">
+
+                <div class="col-sm-4">
+
+                    <div class="form-group">
+                        <label>{{'lossDate' | translate}}</label>
+                        <input kendo-date-picker k-options="lossDateOptions" class="form-control"
+                               name="lossDate" ng-model="loss.lossDate" required
+                               validationMessage="{{'lossDateFieldCanNotBeBlank' |translate}}" style="width: 100%;"/>
+
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="lossDate"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{'part' | translate}}</label>
+                        <input kendo-drop-down-list class="form-control" name="part"
+                               k-options="partSelectionOptions()"
+                              required ng-model="loss.disegno" style="width: 100%;"
+                              k-ng-delay="$root.isArrsReady"
+                              validationMessage="{{'pleaseSelectPart' |translate}}"></input>
+
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="part"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{'supplier' | translate}}</label>
+                        <select class="form-control" name="supplier" ng-model="loss.supplier" required
+                                validationMessage="{{'pleaseSelectSupplier' |translate}}">
+                            <option value="">--</option>
+                            <option ng-repeat="supplier in suppliers" value="{{supplier.sapCode}}">[{{supplier.sapCode}}] - {{supplier.name}}</option>
+                        </select>
+
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="supplier"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{'approverUnit' | translate}}</label>
+                        <select class="form-control" name="role" ng-model="loss.approverRoleId" required
+                                validationMessage="{{'pleaseSelectApproverUnit' |translate}}">
+                            <option value="">--</option>
+                            <option ng-repeat="role in approverRoles" value="{{role.id}}">{{role.name}}</option>
+                        </select>
+
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="role"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{'description' | translate}}</label>
+                        <textarea class="form-control" name="description" ng-model="loss.description"
+                                  required
+                                validationMessage="{{'pleaseEnterSomeDescription' |translate}}"></textarea>
+
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="description"></p>
+                        </div>
+                    </div>
+
+                   <!-- <div class="form-group">
+                        <label>SQP No</label>
+                        <input type="number" ng-model="loss.sqpNo" name="sqpno" class="form-control"
+                               required />
+
+                        <div class="help-block">
+                            <p class="k-invalid-msg" data-for="sqpno"></p>
+                        </div>
+                    </div>-->
+
+                    <div class="form-group">
+                        <label>{{'requestNo' | translate}}</label>
+                        <input type="text" ng-model="loss.requestNo" name="requestno" class="form-control"/>
+                    </div>
+
+                    <div ng-include="'/ng/view/yky/loss/common/edit/add-attachment.html'"></div>
+
+                </div>
+
+                <div class="col-sm-8">
+
+                    <div ng-include="'/ng/view/yky/loss/quality-lab/quality-lab-tests.html'"></div>
+
+
+                    <div ng-include="'/ng/view/yky/loss/common/edit/work-durations.html'"></div>
+
+                   <!-- <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="loss.willSqpOpen" /> {{'willSqpOpen' | translate}}
+                            </label>
+                        </div>
+                    </div>-->
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="panel-footer">
+            &nbsp;
+
+            <button type="submit" class="btn btn-primary pull-right" ng-disabled="!isLossCostValid() || !validator.validate()">
+                <span class="glyphicon glyphicon-save"></span> &nbsp;
+                {{'save' | translate}}
+            </button>
+
+            {{getTotalLossCost() | tfTryCurrency}} &nbsp;
+
+            <span ng-if="!isLossCostValid()" class="label label-danger">
+                {{'lossMustCostMoreThan0OrMustContainDiscardedPart' | translate}}
+            </span>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+</form>

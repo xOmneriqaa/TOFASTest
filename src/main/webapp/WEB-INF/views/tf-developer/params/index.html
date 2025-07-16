@@ -1,0 +1,58 @@
+<div class="slide-reveal" ui-view=""></div>
+<br />
+
+<h1>{{'applicationParams' | translate}}</h1>
+<br />
+<br />
+
+<a tf-has-developer-role="" class="btn btn-primary" ui-sref="tfDeveloper.params.new">{{'add' | translate}}</a>
+
+<br />
+<br />
+
+<table class="table">
+    <thead>
+    <th>#ID</th>
+    <th>{{'name' |translate}}</th>
+    <th>{{'value' | translate}}</th>
+    <th>{{'status' | translate}}</th>
+    <th>{{'insertedDate' | translate}}</th>
+    <th>{{'insertedBy' |translate}}</th>
+    <th>{{'updatedDate' | translate}}</th>
+    <th>{{'updatedBy' | translate}}</th>
+    <th>{{'edit' | translate}}</th>
+    <th tf-has-developer-role="">{{'delete' | translate}}</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in items">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.value}}</td>
+        <td>
+            <span ng-if="item.statusBool" class="glyphicon glyphicon-ok"></span>
+            <span ng-if="!item.statusBool" class="glyphicon glyphicon-remove"></span>
+        </td>
+        <td>{{item.insertedDate}}</td>
+        <td>{{item.insertedBy}}</td>
+        <td>{{item.updatedDate}}</td>
+        <td>{{item.updatedBy}}</td>
+        <td>
+            <a tf-not-have-developer-role="" class="btn btn-warning btn-xs" ui-sref="tfAdmin.appParams.edit({id: item.id})">
+                <span class="glyphicon glyphicon-pencil"></span>&nbsp;
+                <span>{{'edit' | translate}}</span>
+            </a>
+
+            <a tf-has-developer-role="" class="btn btn-warning btn-xs" ui-sref="tfDeveloper.params.edit({id: item.id})">
+                <span class="glyphicon glyphicon-pencil"></span>&nbsp;
+                <span>{{'edit' | translate}}</span>
+            </a>
+        </td>
+        <td tf-has-developer-role="">
+            <button class="btn btn-danger btn-xs btn-delete" ng-click="confirmDelete(item)">
+                <span class="glyphicon glyphicon-trash"></span>&nbsp;
+                <span>{{'delete' | translate}}</span>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>

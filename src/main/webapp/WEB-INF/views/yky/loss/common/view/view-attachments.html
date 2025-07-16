@@ -1,0 +1,15 @@
+<div class="panel panel-warning" ng-if="showAttachmentsPanel()">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{'attachments' |translate}}</h3>
+    </div>
+
+    <ul class="list-group">
+        <a class="list-group-item" ng-repeat="attachment in loss.attachments"
+           tf-href="/loss-attachment/{{attachment.path}}" target="_blank">
+            <h5>
+                <span class="glyphicon glyphicon-paperclip"></span>
+                <span>{{attachment.name}}</span>
+            </h5>
+        </a>
+    </ul>
+</div>

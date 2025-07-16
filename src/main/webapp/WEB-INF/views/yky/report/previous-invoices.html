@@ -1,0 +1,22 @@
+<h1>{{'previousInvoices' | translate}}</h1>
+
+<table class="table">
+    <thead>
+    <th>#ID</th>
+    <th>{{'insDate'}}</th>
+    <th>
+        {{'download' | translate}}
+    </th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in invoices">
+        <td>{{item.id}}</td>
+        <td>{{item.insertedDate}}</td>
+        <td>
+            <button type="button" class="btn btn-default" ng-click="download(item.id)">
+                <i class="fa fa-cloud-download"></i> {{'download' | translate}}
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>

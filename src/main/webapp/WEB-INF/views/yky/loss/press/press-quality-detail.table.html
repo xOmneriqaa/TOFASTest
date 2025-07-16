@@ -1,0 +1,417 @@
+<table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+        <th rowspan="2" ng-if="edit"><i class="fa fa-times"></i></th>
+        <th class="calculated-th" colspan="8">
+            POS
+        </th>
+        <th class="calculated-th" rowspan="2">{{'reportDate' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'reportKeeper' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'cutDate' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'moldNo' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'notes' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'logisticsTransportPlace' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'rollScrapWeight' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'cutScrapQty' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'cutPartBaseWeight' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'pressedScrapQty' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'pressedPartBaseWeight' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'scrapSoldOut' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'repairQty' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'logisticsLabourHours' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'productionLabourHours' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'hrdParam' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'scrapHrd03' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'totalScrap' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'scrapSalePrice' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'disegnoBasePrice' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'disegnoBasePriceDiff' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'disegnoBasePriceWithCustom' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'logisticsLabourCost' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'productionLabourCost' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'scrapPartCost' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'scrapCostDiscount' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'logisticsCost' | translate}}</th>
+        <th class="calculated-th" rowspan="2">{{'totalCostEur' | translate}}</th>
+        <th colspan="7" ng-if="!edit">
+            {{'approveFields' | translate}}
+        </th>
+    </tr>
+    <tr>
+        <th class="calculated-th">{{'rollNo' | translate}}</th>
+        <th class="calculated-th">{{'disegno' | translate}}</th>
+        <th class="calculated-th">{{'form' | translate}}</th>
+        <th class="calculated-th">{{'quality' | translate}}</th>
+        <th class="calculated-th">{{'weight' | translate}}</th>
+        <th class="calculated-th">{{'invoiceNo' | translate}}</th>
+        <th class="calculated-th">{{'shipName' | translate}}</th>
+        <th class="calculated-th">{{'supplier' | translate}}</th>
+
+        <th ng-if="!edit" class="calculated-th">{{'sapOrderNo' | translate}}</th>
+        <th ng-if="!edit" class="calculated-th">{{'creditNote' | translate}}</th>
+        <th ng-if="!edit" class="calculated-th">{{'creditNoteDate' | translate}}</th>
+        <th ng-if="!edit" class="calculated-th">{{'creditNoteAmount' | translate}}</th>
+        <th ng-if="!edit" class="calculated-th">{{'paymentInformer' | translate}}</th>
+        <th ng-if="!edit" class="calculated-th">{{'paymentMailDate' | translate}}</th>
+        <th ng-if="!edit" class="calculated-th">{{'balance' | translate}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="lossDetail in lossDetails">
+        <td ng-if="edit">
+            <button type="button" class="btn btn-danger btn-xs" ng-click="removeDetail($index)">
+                <i class="fa fa-times"></i>
+            </button>
+        </td>
+        <td>
+            <span  ng-if="edit">
+                <input type="text" required ng-model="lossDetail.rollDetail.customRollNo" name="rollNo{{$index}}" class="form-control"/>
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="rollNo{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.rollDetail.rollNo}}
+            </span>
+        </td>
+        <td>{{lossDetail.rollDetail.part.disegno}}</td>
+        <td>{{lossDetail.rollDetail.disegnoDetail.forma}}</td>
+        <td>{{lossDetail.rollDetail.disegnoDetail.quality}}</td>
+        <td>{{lossDetail.rollDetail.rollWeight}}</td>
+        <td>{{lossDetail.rollDetail.invoiceNo}}</td>
+        <td>{{lossDetail.rollDetail.shipName}}</td>
+        <td>{{lossDetail.rollDetail.supplier.sapCode}} - {{lossDetail.rollDetail.supplier.name}}</td>
+        <td>
+            <span  ng-if="edit">
+                <input required kendo-date-picker class="form-control" ng-model="lossDetail.reportDate" name="reportDate{{$index}}" style="width: 100%;" ng-if="edit"/>
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="reportDate{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.reportDate}}
+            </span>
+        </td>
+        <td>
+            <span  ng-if="edit">
+                <input required type="text" ng-model="lossDetail.reportKeeper" class="form-control" name="reportKeeper{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="reportKeeper{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.reportKeeper}}
+            </span>
+        </td>
+        <td>
+            <span  ng-if="edit">
+                <input required kendo-date-picker class="form-control" ng-model="lossDetail.cutDate" name="cutDate{{$index}}" style="width: 100%;" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="cutDate{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.cutDate}}
+            </span>
+        </td>
+        <td>
+            <span  ng-if="edit">
+                <input required type="text" ng-model="lossDetail.moldNo" class="form-control" name="moldNo{{$index}}"/>
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="moldNo{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.moldNo}}
+            </span>
+        </td>
+        <td>{{lossDetail.notes}}</td>
+        <td>{{lossDetail.logisticsTransportPlace}}</td>
+        <td>
+            <span  ng-if="edit">
+                <input  kendo-numeric-text-box  k-ng-model="lossDetail.rollScrapWeight" name="rollScrapWeight{{$index}}"/>
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="rollScrapWeight{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.rollScrapWeight}}
+            </span>
+        </td>
+        <td>
+            <span  ng-if="edit">
+                <input required kendo-numeric-text-box k-ng-model="lossDetail.cutScrapQty" name="cutScrapQty{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="cutScrapQty{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.cutScrapQty}}
+            </span>
+        </td>
+        <td>
+            <span  ng-if="edit">
+                <input kendo-numeric-text-box k-ng-model="lossDetail.cutPartBaseWeight"  name="cutPartBaseWeight{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="cutPartBaseWeight{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.cutPartBaseWeight}}
+            </span>
+        </td>
+        <td>
+            <span  ng-if="edit">
+                <input required kendo-numeric-text-box k-ng-model="lossDetail.pressedScrapQty" name="pressedScrapQty{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="pressedScrapQty{{$index}}"></p>
+                </div>
+            </span>
+
+            <span ng-if="!edit">
+                {{lossDetail.pressedScrapQty}}
+            </span>
+        </td>
+        <td>
+            <span  ng-if="edit">
+                <input  kendo-numeric-text-box  k-ng-model="lossDetail.pressedPartBaseWeight" name="pressedPartBaseWeight{{$index}}"  />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="pressedPartBaseWeight{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.pressedPartBaseWeight}}
+            </span>
+        </td>
+        <td>
+            <span  ng-if="edit">
+                <input  kendo-numeric-text-box  k-ng-model="lossDetail.scrapSoldOut" name="scrapSoldOut{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="scrapSoldOut{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.scrapSoldOut}}
+            </span>
+        </td>
+        <td>
+            <span  ng-if="edit">
+                <input required kendo-numeric-text-box k-ng-model="lossDetail.repairQty" name="repairQty{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="repairQty{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.repairQty}}
+            </span>
+        </td>
+        <td>
+            <span  ng-if="edit">
+                <input required kendo-numeric-text-box k-ng-model="lossDetail.logisticsLabourHours" name="logisticsLabourHours{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="logisticsLabourHours{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.logisticsLabourHours}}
+            </span>
+        </td>
+        <td>
+            <span  ng-if="edit">
+                <input required kendo-numeric-text-box k-ng-model="lossDetail.productionLabourHours" name="productionLabourHours{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="productionLabourHours{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.productionLabourHours}}
+            </span>
+        </td>
+        <td>
+
+            <span  ng-if="edit">
+                <select required class="form-control" ng-model="lossDetail.scrapHrdParam" name="scrapHrdParam{{$index}}"
+                        ng-options="hrdParam.value as (hrdParam.name + ' - [' + hrdParam.value + ']') for hrdParam in hrdParams">
+                    <option value="">--</option>
+                </select>
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="scrapHrdParam{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.scrapSalesParam}}
+            </span>
+        </td>
+        <td>{{lossDetail._scrapHrd03}}</td>
+        <td>{{lossDetail._totalScrap}}</td>
+        <td>
+            <span  ng-if="edit">
+                <input  kendo-numeric-text-box  k-ng-model="lossDetail.scrapSalePrice" name="scrapSalePrice{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="scrapSalePrice{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.scrapSalePrice}}
+            </span>
+        </td>
+        <td>{{lossDetail._partBasePrice | tfEurCurrency}}</td>
+        <td>
+
+            <span  ng-if="edit">
+                <input  kendo-numeric-text-box step="any" k-ng-model="lossDetail.disegnoBasePriceDiff" name="disegnoBasePriceDiff{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="disegnoBasePriceDiff{{$index}}"></p>
+                </div>
+            </span>
+
+
+            <span ng-if="!edit">
+                {{lossDetail.disegnoBasePriceDiff}}
+            </span>
+        </td>
+        <td>{{lossDetail._partCustomsBasePrice | tfEurCurrency}}</td>
+        <td>{{lossDetail._logisticsLabourCost | tfEurCurrency}}</td>
+        <td>{{lossDetail._productionLabourCost | tfEurCurrency}}</td>
+        <td>{{lossDetail._scrapPartCost | tfEurCurrency}}</td>
+        <td>{{lossDetail._scrapCostDiscount | tfEurCurrency}}</td>
+        <td>{{lossDetail._logisticsCost | tfEurCurrency}}</td>
+        <td>{{lossDetail._totalCost | tfEurCurrency}}</td>
+
+        <td ng-if="!edit">
+            <span  ng-if="approve">
+                <input required class="form-control" type="text" ng-model="lossDetail.sapOrderNo" name="sapOrderNo{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="sapOrderNo{{$index}}"></p>
+                </div>
+            </span>
+
+            <span ng-if="!approve">
+                {{lossDetail.sapOrderNo}}
+            </span>
+        </td>
+
+        <td ng-if="!edit">
+            <span  ng-if="approve">
+                <input required class="form-control" type="text" ng-model="lossDetail.creditNote" name="creditNote{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="creditNote{{$index}}"></p>
+                </div>
+            </span>
+
+            <span ng-if="!approve">
+                {{lossDetail.creditNote}}
+            </span>
+        </td>
+
+        <td ng-if="!edit">
+            <span  ng-if="approve">
+                <input required kendo-date-picker ng-model="lossDetail.creditNoteDate" name="creditNoteDate{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="creditNoteDate{{$index}}"></p>
+                </div>
+            </span>
+
+            <span ng-if="!approve">
+                {{lossDetail.creditNoteDate}}
+            </span>
+        </td>
+
+        <td ng-if="!edit">
+            <span  ng-if="approve">
+                <input required kendo-numeric-text-box k-ng-model="lossDetail.creditNoteAmount" name="creditNoteAmount{{$index}}"/>
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="creditNoteAmount{{$index}}"></p>
+                </div>
+            </span>
+
+            <span ng-if="!approve">
+                {{lossDetail.creditNoteAmount | tfEurCurrency}}
+            </span>
+        </td>
+
+        <td ng-if="!edit">
+            <span  ng-if="approve">
+                <input required class="form-control" type="text" ng-model="lossDetail.paymentInformer" name="paymentInformer{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="paymentInformer{{$index}}"></p>
+                </div>
+            </span>
+
+            <span ng-if="!approve">
+                {{lossDetail.paymentInformer}}
+            </span>
+        </td>
+
+        <td ng-if="!edit">
+            <span  ng-if="approve">
+                <input required kendo-date-picker ng-model="lossDetail.paymentMailDate" name="paymentMailDate{{$index}}" />
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="paymentMailDate{{$index}}"></p>
+                </div>
+            </span>
+
+            <span ng-if="!approve">
+                {{lossDetail.paymentMailDate}}
+            </span>
+        </td>
+
+        <td ng-if="!edit">
+            {{lossDetail._paidBalance | tfEurCurrency}}
+        </td>
+    </tr>
+    </tbody>
+</table>

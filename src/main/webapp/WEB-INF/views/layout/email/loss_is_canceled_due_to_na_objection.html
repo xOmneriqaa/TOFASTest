@@ -1,0 +1,19 @@
+<div xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <span th:text="${id}"></span> numaralı kayıp, yapılan itiraza karşılık verilmediği için iptal edilmiştir.
+
+    <br/>
+    <br/>
+
+    <a th:href="@{__${contextPath}__#/losses/view/__${id}__}">Kayıp Detayı</a>
+
+    <hr />
+
+    Loss with id <span th:text="${id}"></span> has been canceled due to the objection which is not answered.
+
+    <br/>
+    <br/>
+
+    <a th:href="@{__${contextPath}__#/losses/view/__${id}__}">Loss Detail</a>
+
+</div>

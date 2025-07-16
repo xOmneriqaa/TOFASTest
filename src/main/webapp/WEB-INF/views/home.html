@@ -1,0 +1,268 @@
+<style>
+    .mycontent-left {
+        border-left: 1px solid rgba(205, 205, 205, 0.6);
+    }
+</style>
+
+<h4>{{'welcomeApp' | translate}}</h4>
+
+<br />
+
+<div ng-if="canSeeCharts()">
+
+    <hr/>
+
+    <tabset>
+        <tab select="getAnnualData()">
+            <tab-heading>{{'annual' | translate}}</tab-heading>
+            <br />
+
+            <div class="panel panel-success">
+
+                <div class="panel-body">
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="annualStatusBasedOptions"
+                                 k-ng-delay="annualStatusBasedOptions"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="annualLossBasedOptions"
+                                 k-ng-delay="annualLossBasedOptions"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="annualSupplierBasedOptions"
+                                 k-ng-delay="annualSupplierBasedOptions"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel panel-primary">
+
+                <div class="panel-body">
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="annualStatusBasedDurationOptions"
+                                 k-ng-delay="annualStatusBasedDurationOptions"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="annualLossBasedDurationOptions"
+                                 k-ng-delay="annualLossBasedDurationOptions"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="annualSupplierBasedDurationOptions"
+                                 k-ng-delay="annualSupplierBasedDurationOptions"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </tab>
+
+        <tab select="getQuarterData()">
+            <tab-heading>{{'quarter' | translate}}</tab-heading>
+            <br />
+
+            <div class="panel panel-success">
+
+                <div class="panel-body">
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="quarterStatusBasedOptions"
+                                 k-ng-delay="quarterStatusBasedOptions"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="quarterLossBasedOptions"
+                                 k-ng-delay="quarterLossBasedOptions"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="quarterSupplierBasedOptions"
+                                 k-ng-delay="quarterSupplierBasedOptions"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="panel panel-primary">
+
+                <div class="panel-body">
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="quarterStatusBasedDurationOptions"
+                                 k-ng-delay="quarterStatusBasedDurationOptions"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="quarterLossBasedDurationOptions"
+                                 k-ng-delay="quarterLossBasedDurationOptions"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="quarterSupplierBasedDurationOptions"
+                                 k-ng-delay="quarterSupplierBasedDurationOptions"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </tab>
+
+        <tab select="getMonthData()">
+            <tab-heading>{{'month' | translate}}</tab-heading>
+
+            <br />
+
+            <div class="panel panel-success">
+
+                <div class="panel-body">
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="monthStatusBasedOptions"
+                                 k-ng-delay="monthStatusBasedOptions"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="monthLossBasedOptions"
+                                 k-ng-delay="monthLossBasedOptions"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="monthSupplierBasedOptions"
+                                 k-ng-delay="monthSupplierBasedOptions"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel panel-primary">
+
+                <div class="panel-body">
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="monthStatusBasedDurationOptions"
+                                 k-ng-delay="monthStatusBasedDurationOptions"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="monthLossBasedDurationOptions"
+                                 k-ng-delay="monthLossBasedDurationOptions"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div kendo-chart=""
+                                 k-options="monthSupplierBasedDurationOptions"
+                                 k-ng-delay="monthSupplierBasedDurationOptions"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </tab>
+
+    </tabset>
+
+
+    <hr />
+
+</div>
+
+<div tf-is-authenticated="">
+
+    <div class="row well">
+
+        <div class="col-md-6">
+
+            <h1>{{'forTofasUsers' | translate}}</h1>
+
+            <p>
+            {{'tofasUserWelcome' | translate}}
+            </p>
+
+        </div>
+
+        <div class="col-md-6 mycontent-left">
+
+            <h1>{{'forSuppliers' | translate}}</h1>
+
+            <p>
+            {{'supplierUserWelcome' | translate}}
+            </p>
+
+            
+
+        </div>
+
+    </div>
+
+
+
+    <blockquote>
+        TOFAŞ'da gerçekleştirilen eğitime ait sunum dosyasına aşağıdaki linkten ulaşabilirsiniz.
+        <br />
+
+        <a href="//app.tofas.com.tr/tfi/static/yky/egitim sunusu_23032016.ppsx">Eğitim Sunumu</a>
+    </blockquote>
+</div>
+

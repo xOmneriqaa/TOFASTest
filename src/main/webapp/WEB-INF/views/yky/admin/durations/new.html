@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h1>{{'addDuration' | translate}}</h1>
+
+        <div class="alert alert-danger" role="alert" ng-if="durationExists">
+            {{'durationExistsForThisDisegnoPleaseUseEditFunctionToChangeDurationValues' | translate }}
+        </div>
+
+        <form class="form" ng-submit="saveItem()">
+            <div ng-include="'/ng/view/yky/admin/durations/base-form.html'"></div>
+
+            <br />
+            <button class="btn btn-primary btn-sm pull-right" type="submit">{{'save'|translate}}</button>
+            <span class="pull-right">&nbsp;</span>
+            <button class="btn btn-default btn-sm pull-right" type="button" ui-sref="tfAdmin.durations">{{'cancel'|translate}}</button>
+        </form>
+    </div>
+</div>

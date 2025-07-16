@@ -1,0 +1,8 @@
+target/.wro4j
+target/classes
+target/generated-sources
+target/maven-archiver
+target/tmp
+target/yan-sanayi-kayip-yonetimi
+/.idea/
+/target/

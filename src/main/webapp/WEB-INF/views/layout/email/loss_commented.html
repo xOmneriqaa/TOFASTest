@@ -1,0 +1,34 @@
+<div xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <span th:text="${id}"></span> numaralı kayıp için yeni yorum eklenmiştir.
+    Aşağıdaki linkten kayıp detayına ulaşabilirsiniz.
+
+    <br/>
+    <blockquote>
+        <i th:text="${comment}"></i>
+    </blockquote>
+
+
+
+    <br/>
+    <br/>
+
+    <a th:href="@{__${contextPath}__#/losses/view/__${id}__}">Kayıp Detayı</a>
+
+    <hr/>
+
+    Loss with the id <span th:text="${id}"></span> has a new comment.
+    You can check the details with the following link.
+
+    <br/>
+    <blockquote>
+        <i th:text="${comment}"></i>
+    </blockquote>
+
+
+    <br/>
+    <br/>
+
+    <a th:href="@{__${contextPath}__#/losses/view/__${id}__}">Loss Detail</a>
+
+</div>

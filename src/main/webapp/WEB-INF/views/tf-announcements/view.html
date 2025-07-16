@@ -1,0 +1,46 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <a class="btn btn-default" ng-click="markAsUnread()">
+            <i class="fa fa-envelope"></i>
+            <span>{{'markAsUnread' | translate}}</span>
+        </a>
+
+        <hr />
+
+        <h1 class="panel-title">{{selectedAnnouncement.header}}</h1>
+
+        <p>{{selectedAnnouncement.body}}</p>
+
+        <br />
+        <br />
+        <div class="panel panel-info" ng-if="selectedAnnouncementHasAttachments()">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{'attachments' | translate}}</h1>
+            </div>
+
+            <ul class="list-group">
+                <a target="_blank" class="list-group-item"
+                   ng-repeat="attachment in selectedAnnouncement.attachments"
+                   tf-href="/files/{{attachment.path}}">
+                    <h5>
+                        <span class="glyphicon glyphicon-paperclip"></span>
+                        <span>{{attachment.name}}</span>
+                        <small>{{attachment.description}}</small>
+                    </h5>
+                </a>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="panel-footer">
+        <i class="fa fa-user"></i>
+        <span>{{selectedAnnouncement.insertedBy}}</span>
+
+        &nbsp;&nbsp;
+
+        <i class="fa fa-clock-o"></i>
+        <span>{{selectedAnnouncement.insertedDate}}</span>
+    </div>
+
+</div>

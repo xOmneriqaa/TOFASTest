@@ -1,0 +1,115 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title">{{'searchParams' | translate}}</h1>
+    </div>
+
+    <div class="panel-body">
+
+        <form ng-submit="searchReport()">
+
+            <div class="row">
+
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'lossDateStart' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.lossDateStart" style="width: 100%;"/>
+                    </div>
+
+                </div>
+
+               <!--  <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'lossDateEnd' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.lossDateEnd" style="width: 100%;"/>
+                    </div>
+
+                </div> -->
+
+            <!--     <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'lossInsDateStart' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.lossInsDateStart" style="width: 100%;"/>
+                    </div>
+
+                </div> -->
+
+               <!--  <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'lossInsDateEnd' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.lossInsDateEnd" style="width: 100%;"/>
+                    </div>
+
+                </div> -->
+
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'lossState' | translate}}</label>
+                        <select class="form-control" ng-model="searchParams.lossState">
+                            <option value="">--</option>
+                            <option ng-repeat="item in lossStates" value="{{item}}">{{item | translate}}</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{'lossType' | translate}}</label>
+                        <select class="form-control" ng-model="searchParams.lossType">
+                            <option value="">--</option>
+                            <option ng-repeat="lossType in lossTypes" value="{{lossType}}">{{lossType | translate}}</option>
+                        </select>
+                    </div>
+                </div>
+                
+                     <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{'lossUnit' | translate}}</label>
+                        <select class="form-control" ng-model="searchParams.productionSubLossType">
+                            <option value="">--</option>
+                            <option ng-repeat="subType in subTypes" value="{{subType}}">{{lossUnit | translate}}</option>
+                        </select>
+                    </div>
+                </div>
+                
+                   <!-- <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'lossDate' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.lossDate" style="width: 100%;"/>
+                    </div>
+
+                </div> -->
+                <!-- 
+                  <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'lossInsDate' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.lossInsDate" style="width: 100%;"/>
+                    </div>
+
+                </div>  -->
+
+
+
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">{{'search' | translate}}</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div class="table-responsive">
+    <div kendo-grid="discardedPartsGrid"
+         k-options="discardedPartsGridOptions"
+         k-ng-delay="discardedPartsGridOptions"></div>
+</div>

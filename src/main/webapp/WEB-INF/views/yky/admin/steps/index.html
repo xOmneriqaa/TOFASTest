@@ -1,0 +1,57 @@
+<div class="slide-reveal" ui-view=""></div>
+<br />
+
+<h1>{{'steps' | translate}}</h1>
+<br />
+<br />
+
+<a tf-has-roles="" roles="['TFG_YKY_ADMIN', 'TFG_YKY_DURATION_DEF']" class="btn btn-primary" ui-sref="tfAdmin.steps.new">{{'add' | translate}}</a>
+
+<br />
+<br />
+
+<table datatable="ng" class="table">
+    <thead>
+    <th>#ID</th>
+    <th>{{'name' |translate}}</th>
+    <th>{{'productionLossSubTypes' | translate}}</th>
+    <th>{{'status' | translate}}</th>
+    <th>{{'insertedDate' | translate}}</th>
+    <th>{{'insertedBy' |translate}}</th>
+    <th>{{'updatedDate' | translate}}</th>
+    <th>{{'updatedBy' | translate}}</th>
+    <th>{{'edit' | translate}}</th>
+    <th tf-has-developer-role="">{{'delete' | translate}}</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in items">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>
+            <span ng-repeat="prSubType in item.productionSubLossTypes">
+                <span class="label label-info tf-label">{{prSubType | translate}}</span>&nbsp;
+            </span>
+        </td>
+        <td>
+            <span ng-if="item.statusBool" class="glyphicon glyphicon-ok"></span>
+            <span ng-if="!item.statusBool" class="glyphicon glyphicon-remove"></span>
+        </td>
+        <td>{{item.insertedDate}}</td>
+        <td>{{item.insertedBy}}</td>
+        <td>{{item.updatedDate}}</td>
+        <td>{{item.updatedBy}}</td>
+        <td>
+            <a class="btn btn-warning btn-xs" ui-sref="tfAdmin.steps.edit({id: item.id})">
+                <span class="glyphicon glyphicon-pencil"></span>&nbsp;
+                <span>{{'edit' | translate}}</span>
+            </a>
+        </td>
+        <td tf-has-developer-role="">
+            <button type="button" class="btn btn-danger btn-xs btn-delete" ng-click="confirmDelete(item)">
+                <span class="glyphicon glyphicon-trash"></span>&nbsp;
+                <span>{{'delete' | translate}}</span>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>

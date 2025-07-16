@@ -1,0 +1,44 @@
+
+<h4>{{ 'pressReports' | translate }}</h4>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-pills">
+
+            <li ui-sref-active="active">
+                <a ui-sref="reports.press.dashboard">
+                    <i class="fa fa-tachometer"></i> {{'pressDashboard' | translate }}
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="reports.press.quality">
+                    {{'pressQualityReport' | translate }}
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="reports.press.logistics">
+                    {{'pressLogisticsReport' | translate }}
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="reports.press.details">
+                    {{'pressDetailsReport' | translate }}
+                </a>
+            </li>
+
+
+
+        </ul>
+    </div>
+
+</div>
+
+<hr />
+
+<div class="slide-reveal" ui-view="">
+</div>

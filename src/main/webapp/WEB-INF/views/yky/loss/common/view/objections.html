@@ -1,0 +1,94 @@
+<div class="panel panel-danger" ng-if="showObjectionPanel()">
+
+    <div class="panel-heading">
+        <h1 class="panel-title">
+            {{'objections' | translate}}
+        </h1>
+    </div>
+
+    <div class="panel-body">
+
+        <div tf-has-role="TFG_YKY_SUPPLIER">
+
+            <div ng-if="loss.beObjected">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{'addObjection' | translate}}</h3>
+                    </div>
+
+                    <div class="panel-body">
+
+                        <form ng-submit="doObjection(lossObjection)">
+
+                            <div class="form-group">
+                                <label>{{'objectionType' | translate}}</label>
+                                <select class="form-control" ng-model="lossObjection.objectionTypeId">
+                                    <option ng-repeat="objectionType in objectionTypes" value="{{objectionType.id}}">
+                                        {{objectionType.name}}
+                                    </option>
+                                </select>
+                            </div>
+<!-- TODO filtre konulacak -->
+                            <div class="form-group">
+                                <label>{{'description' | translate}}</label>
+                                <textarea class="form-control" ng-model="lossObjection.objectionMessage" ng-trim="false" maxlength="1024"></textarea>
+                                 <span>{{1024 - lossObjection.objectionMessage.length}} karakter kaldı</span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-xs">
+                                {{'makeObjection' | translate}}
+                            </button>
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+                <th>{{'status' | translate}}</th>
+                <th>{{'objectionType' | translate}}</th>
+                <th>{{'description' | translate}}</th>
+                <th>{{'objectionDate' | translate}}</th>
+                <th>{{'result' | translate}}</th>
+                <th>{{'actions' | translate}}</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="objection in loss.objections">
+                <td>
+                    <span class="badge">{{objection.objectionStatus | translate}}</span>
+                </td>
+                <td>{{objection.objectionType.name}}</td>
+                <td>{{objection.objectionDescription}}</td>
+                <td>{{objection.insertedDate}}</td>
+                <td>{{objection.objectionResultDescription}}</td>
+                <td>
+                    <span ng-if="canUserSetObjection(objection)">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="setObjectionResult()">
+                            {{'setObjectionStatus' | translate}}
+                        </button>
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div ng-if="loss.objections.length > 0">
+            <h4>{{'currentObjectionResponsibleEmails' | translate}}</h4>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="resEmail in loss.currentObjection.objectionType.responsibleEmails">
+                    {{resEmail}}
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>

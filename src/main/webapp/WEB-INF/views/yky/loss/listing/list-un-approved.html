@@ -1,0 +1,27 @@
+<h1>{{'unapprovedLosses' | translate}}</h1>
+
+<table class="table">
+    <thead>
+    <th>#</th>
+    <th>{{'description' | translate}}</th>
+    <th>{{'lossDate' | translate}}</th>
+    <th>{{'disegno' | translate}}</th>
+    <th>{{'tableCode' | translate}}</th>
+    <th>{{'view' | translate}}</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in losses">
+        <td>{{item.lossId}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.lossDate}}</td>
+        <td>{{item.disegno}} - {{item.disegnoDesc}}</td>
+        <td>{{item.tableCode}}</td>
+        <td>
+            <a ui-sref="losses.view({id: item.lossId})" class="btn btn-xs btn-primary">
+                <span class="glyphicon glyphicon-eye-open"></span>
+                {{'view' | translate}}
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>

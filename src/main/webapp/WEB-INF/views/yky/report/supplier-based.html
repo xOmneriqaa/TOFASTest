@@ -1,0 +1,50 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title">{{'searchParams' | translate}}</h1>
+    </div>
+
+    <div class="panel-body">
+
+        <form ng-submit="searchReport()">
+
+            <div class="row">
+
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'lossDateStart' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.lossDateStart" style="width: 100%;"/>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'lossDateEnd' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.lossDateEnd" style="width: 100%;"/>
+                    </div>
+
+                </div>
+
+               <!-- <div class="col-md-4">
+
+                    <div class="form-group">
+                        <label>{{'supplierType'  | translate}}</label>
+                        <select kendo-multi-select k-options="supplierTypesOptions" ng-model="searchParams.supplierTypes" style="width: 100%;"></select>
+                    </div>
+
+                </div>-->
+
+
+            </div>
+
+            <button type="submit" class="btn btn-primary">{{'search' | translate}}</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div kendo-grid="supplierBasedGrid" k-options="supplierBasedGridOptions" k-ng-delay="supplierBasedGridOptions"></div>

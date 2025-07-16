@@ -1,0 +1,97 @@
+<div class="row">
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>{{'lossDate' | translate}}</label>
+            <p class="form-control-static">
+                {{loss.lossDate}}
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>{{'supplier' | translate}}</label>
+            <p class="form-control-static">
+                {{loss.supplier.supplierCode}} - {{loss.supplier.name}}
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>{{'firmType' | translate}}</label>
+            <p class="form-control-static">
+                {{loss.firmType}}
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>{{'firmDescription' | translate}}</label>
+            <p class="form-control-static">
+                {{loss.firmDescription}}
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>{{'pressLossType' | translate}}</label>
+            <h4>
+                <span class="label label-info">
+                    {{loss.pressLossType | translate}}
+                </span>
+            </h4>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <label>{{'balance' | translate}}</label>
+        <p class="form-control-static">
+            {{loss.balance | tfEurCurrency}}
+        </p>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <h3>{{'lossDetails' | translate}}</h3>
+
+        <div class="table-responsive well" ng-if="loss.pressLossType == 'LOGISTICS'">
+            <press-logistics-detail-table detail-edit="false" edit="false" loss-details="loss.details"
+                                          hrd-params="[]">
+            </press-logistics-detail-table>
+        </div>
+
+        <div class="table-responsive well"  ng-if="loss.pressLossType == 'QUALITY'">
+            <press-quality-detail-directive edit="false" loss-details="loss.details"
+                                          hrd-params="[]">
+            </press-quality-detail-directive>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row" ng-if="loss && loss.currentState == 'OPEN'">
+
+    <div class="col-md-2">
+        <button type="button" class="btn btn-success" ng-click="approvePress()">
+            <i class="fa fa-thumbs-up"></i> &nbsp; {{'approveAndClose' | translate}}
+        </button>
+    </div>
+
+    <div class="col-md-2">
+        <button type="button" class="btn btn-warning" ui-sref="losses.editPressLoss({id: loss.id})">
+            <i class="fa fa-pencil-square-o"></i> &nbsp; {{'edit' | translate}}
+        </button>
+    </div>
+
+</div>

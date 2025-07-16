@@ -1,0 +1,81 @@
+<h1>{{'editPressLoss' | translate}}</h1>
+
+<div class="row">
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>{{'lossDate' | translate}}</label>
+            <p class="form-control-static">
+                {{loss.lossDate}}
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>{{'supplier' | translate}}</label>
+            <p class="form-control-static">
+                {{loss.supplier.supplierCode}} - {{loss.supplier.name}}
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>{{'firmType' | translate}}</label>
+            <p class="form-control-static">
+                {{loss.firmType}}
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>{{'firmDescription' | translate}}</label>
+            <p class="form-control-static">
+                {{loss.firmDescription}}
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>{{'pressLossType' | translate}}</label>
+            <h4>
+                <span class="label label-info">
+                    {{loss.pressLossType | translate}}
+                </span>
+            </h4>
+        </div>
+    </div>
+
+</div>
+
+<form kendo-validator="validator" k-messages="$root.sqp.messages">
+
+    <a class="btn btn-default" ui-sref="losses.view({id: loss.id})">
+        <i class="fa fa-angle-left"></i> {{'cancel' | translate}}
+    </a>
+
+    <button type="button" class="btn btn-primary" ng-click="easyUpdateDetails()" ng-disabled="!validator.validate()">
+        <i class="fa fa-refresh"></i> {{'updateDetails' | translate}}
+    </button>
+
+    <button type="button" class="pull-right btn btn-success" ng-click="saveDetails()" ng-disabled="!validator.validate()">
+        <i class="fa fa-floppy-o"></i> {{'saveDetails' | translate}}
+    </button>
+
+    <hr />
+
+    <div class="table-responsive well" ng-if="loss.pressLossType == 'LOGISTICS'">
+        <press-logistics-detail-table detail-edit="true" edit="false" loss-details="loss.details"
+                                      hrd-params="hrdParams">
+        </press-logistics-detail-table>
+    </div>
+
+    <div class="table-responsive well"  ng-if="loss.pressLossType == 'QUALITY'">
+        <press-quality-detail-directive edit="false" loss-details="loss.details"
+                                        hrd-params="[]">
+        </press-quality-detail-directive>
+    </div>
+</form>

@@ -1,0 +1,138 @@
+<h1>
+    {{'viewLossDetails' | translate}}
+</h1>
+
+<blockquote>
+
+    <div class="pull-right text-right">
+        <span ng-class="getLossStateClass()">
+            {{loss.currentState | translate}}
+        </span>
+
+        <span ng-if="isLossHaveAnyOpenObjection()" >
+            <br />
+            <span class="pull-right label label-danger">
+                {{'lossHasOpenObjection' | translate}}
+            </span>
+        </span>
+
+        <br />
+        <span ng-class="getLossStateClass()">
+            <span ng-if="loss.lossType != 'PRESS'">
+                {{ loss.totalCost | tfTryCurrency }}
+            </span>
+
+            <span ng-if="loss.lossType == 'PRESS'">
+                {{ loss.totalCost | tfEurCurrency }}
+            </span>
+
+        </span>
+
+        <br />
+        <h6>
+            <span class="glyphicon glyphicon-time"></span>&nbsp;{{loss.insertedDate}}
+        </h6>
+        <h6>
+            <span class="glyphicon glyphicon-user"></span>&nbsp;{{loss.insertedBy}}
+        </h6>
+
+        <button type="button" class="btn btn-danger btn-xs"
+                ng-if="isLossCancelable()"
+                ng-click="cancelLoss()">
+            <i class="fa fa-remove"></i>
+            {{'cancel' | translate}}
+        </button>
+
+        &nbsp;
+        <button type="button" class="btn btn-xs"
+                ng-class="{'btn-warning': !isLossPaused(), 'btn-success': isLossPaused()}"
+                ng-if="isLossPausable()"
+                ng-click="pauseLoss()">
+
+            <span ng-if="!isLossPaused()">
+                <i class="fa fa-pause"></i>
+                {{'pauseLoss' | translate}}
+            </span>
+
+            <span ng-if="isLossPaused()">
+                <i class="fa fa-play"></i>
+                {{'unPauseLoss' | translate}}
+            </span>
+
+        </button>
+
+        &nbsp;
+        <button type="button" class="btn btn-default btn-xs"
+                ng-if="canAttachFile()"
+                ng-click="attachNewFile()">
+            <i class="fa fa-paperclip"></i>
+            {{'addFile' | translate}}
+        </button>
+
+    </div>
+
+    #{{loss.id}}
+    <br />
+    <br />
+    <footer>
+        {{loss.description}}
+    </footer>
+</blockquote>
+
+<div ng-if="loss.cancelDescription" style="width: 50%">
+    <div class="alert alert-danger" role="alert">
+        <i class="fa fa-warning"></i>
+        <strong>{{ 'cancelDescription' | translate }}</strong>: {{loss.cancelDescription}}
+    </div>
+</div>
+
+
+
+<h3>
+    {{loss.lossType | translate}}
+    <hr />
+</h3>
+
+
+<tabset>
+    <tab heading="{{'lossSpecializedInfo' | translate}}">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div ui-view=""></div>
+            </div>
+        </div>
+    </tab>
+
+    <tab heading="{{'stateChanges' | translate}}">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div ng-include="'/ng/view/yky/loss/common/view/view-state-changes.html'"></div>
+            </div>
+        </div>
+    </tab>
+
+    <tab heading="{{'attachments' | translate}}" ng-if="showAttachmentsPanel()">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div ng-include="'/ng/view/yky/loss/common/view/view-attachments.html'"></div>
+            </div>
+        </div>
+    </tab>
+
+    <tab heading="{{'objections' | translate}}" ng-if="showObjectionPanel()">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div ng-include="'/ng/view/yky/loss/common/view/objections.html'"></div>
+            </div>
+        </div>
+    </tab>
+
+    <tab heading="{{'comments' | translate}}">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div ng-include="'/ng/view/yky/loss/common/view/view-comments.html'"></div>
+            </div>
+        </div>
+    </tab>
+
+</tabset>

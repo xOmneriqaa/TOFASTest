@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{'uploadExcelFile' | translate}}</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-11">
+
+            <div class="form-group">
+                <label>{{'attachments' | translate}}</label>
+                <input name="files"
+                       type="file"
+                       kendo-upload
+                       k-async="attachmentOptions"
+                       k-on-upload="onUpload(kendoEvent)"
+                       k-on-success="onSuccess(kendoEvent)"/>
+            </div>
+        </div>
+
+    </div>
+</div>

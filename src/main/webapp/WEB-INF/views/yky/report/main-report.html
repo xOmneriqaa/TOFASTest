@@ -1,0 +1,182 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title">{{'searchParams' | translate}}</h1>
+    </div>
+
+    <div class="panel-body">
+
+        <form ng-submit="searchReport()">
+
+            <div class="row">
+
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'lossDateStart' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.lossDateStart" style="width: 100%;"/>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'lossDateEnd' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.lossDateEnd" style="width: 100%;"/>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{'disegno' | translate}}</label>
+                        <input type="text" class="form-control" ng-model="searchParams.disegno" />
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{'sqpNo' | translate}}</label>
+                        <input type="text" class="form-control" ng-model="searchParams.sqpNo" />
+                    </div>
+                </div>
+
+                <div class="col-md-2" tf-has-role="TFG_YKY_REPORT">
+                    <div class="form-group">
+                        <label>{{'model' | translate}}</label>
+                        <input kendo-drop-down-list class="form-control"
+                               k-options="modelSelectionOptions" ng-model="searchParams.model"
+                               style="width: 100%;"></input>
+                    </div>
+                </div>
+
+                <div class="col-md-2" tf-has-role="TFG_YKY_REPORT">
+                    <div class="form-group">
+                        <label>{{'lossSource' | translate}}</label>
+                        <select class="form-control" ng-model="searchParams.lossSourceId">
+                            <option value="">--</option>
+                            <option ng-repeat="lossSource in lossSources" value="{{lossSource.id}}">{{lossSource.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'stateChangeDateStart' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.stateChangeDateStart" style="width: 100%;"/>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'stateChangeDateEnd' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.stateChangeDateEnd" style="width: 100%;"/>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'lossState' | translate}}</label>
+                        <select class="form-control" ng-model="searchParams.lossState">
+                            <option value="">--</option>
+                            <option ng-repeat="item in lossStates" value="{{item}}">{{item | translate}}</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2" tf-has-role="TFG_YKY_REPORT">
+                    <div class="form-group">
+                        <label>{{'supplier' | translate}}</label>
+                        <select kendo-drop-down-list
+                                k-options="supplierSelectOptions()"
+                                ng-model="searchParams.supplierCode"
+                                k-ng-delay="$root.isSupsReady"
+                                style="width: 100%"></select>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{'lossIds' | translate}}</label>
+                        <textarea class="form-control" ng-model="searchParams.lossIds"></textarea>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'approveDateStart' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.approvalDateStart" style="width: 100%;"/>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'approveDateEnd' | translate}}</label>
+                        <input kendo-date-picker class="form-control" ng-model="searchParams.approvalDateEnd" style="width: 100%;"/>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <div class="form-group">
+                        <label>{{'approverRole' | translate}}</label>
+                        <select class="form-control" ng-model="searchParams.approverRoleId">
+                            <option value="">--</option>
+                            <option ng-repeat="item in approverRoles" value="{{item.id}}">{{item.name | translate}}</option>
+                        </select>
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{'lossType' | translate}}</label>
+                        <select class="form-control" ng-model="searchParams.lossType">
+                            <option value="">--</option>
+                            <option ng-repeat="lossType in lossTypes" value="{{lossType}}">{{lossType | translate}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-2" tf-has-role="TFG_YKY_REPORT">
+                    <div class="form-group">
+                        <label>{{'tut' | translate}}</label>
+                        <input type="text" class="form-control" ng-model="searchParams.tut" />
+                    </div>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary">{{'search' | translate}}</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div class="table-responsive">
+    <div kendo-grid="mainReportGrid" k-options="mainReportGridOptions" k-ng-delay="mainReportGridOptions"></div>
+
+</div>

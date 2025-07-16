@@ -1,0 +1,20 @@
+<form ng-submit="ok()">
+    <div class="modal-header">
+        <h3 class="modal-title">{{'cancelLoss' | translate}}</h3>
+    </div>
+    <div class="modal-body">
+        {{'cancelLossMessage' | translate}}
+
+        <hr />
+
+        <div class="form-group">
+            <label>{{ 'cancelDescription' | translate }}</label>
+            <textarea required class="form-control" ng-model="cancelDesc"></textarea>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">{{'close' | translate}}</button>
+        <button type="submit" class="btn btn-danger">{{'cancel' | translate}}</button>
+    </div>
+</form>

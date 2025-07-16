@@ -1,0 +1,26 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h1 class="panel-title">{{'qualityTests' | translate}}</h1>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="qLabTest in loss.qualityLabTests">
+            {{qLabTest.qualityTestNameCached}}
+
+            <span class="pull-right">
+                <span class="fa fa-cubes"></span>
+                {{qLabTest.qty}}
+                &nbsp;
+                <span class="fa fa-cube"></span>
+                {{qLabTest.qualityTestPriceCached}}
+                &nbsp;
+
+                <span class="badge pull-right">
+                    {{qLabTest.totalCost | tfTryCurrency }}
+                </span>
+            </span>
+
+        </li>
+    </ul>
+
+</div>

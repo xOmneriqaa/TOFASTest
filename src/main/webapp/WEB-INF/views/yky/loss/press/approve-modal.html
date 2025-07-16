@@ -1,0 +1,38 @@
+<style>
+    .modal-dialog {
+        width: 95%;
+    }
+</style>
+
+<div class="modal-header">
+    <h3 class="modal-title">{{'approveLoss' | translate}}</h3>
+</div>
+<div class="modal-body">
+
+    <form kendo-validator="validator" k-messages="$root.sqp.messages">
+
+        <div class="well table-responsive">
+            <div ng-if="loss.pressLossType == 'LOGISTICS'">
+                <press-logistics-detail-table  edit="false" loss-details="loss.details" hrd-params="[]">
+                </press-logistics-detail-table>
+            </div>
+
+            <div ng-if="loss.pressLossType == 'QUALITY'">
+                <press-quality-detail-directive approve="true" edit="false" loss-details="loss.details" hrd-params="[]">
+                </press-quality-detail-directive>
+            </div>
+        </div>
+    </form>
+
+</div>
+<div class="modal-footer">
+
+    <div class="label label-danger" ng-if="validator.errors().length > 0">
+        {{validator.errors().length}} {{'errorsInForm' | translate}}
+    </div>
+
+    &nbsp;&nbsp;&nbsp;
+
+    <button type="button" class="btn btn-danger" ng-click="cancel()">{{'cancel' | translate}}</button>
+    <button type="button" class="btn btn-success" ng-disabled="!validator.validate()" ng-click="approve()">{{'approve' | translate}}</button>
+</div>

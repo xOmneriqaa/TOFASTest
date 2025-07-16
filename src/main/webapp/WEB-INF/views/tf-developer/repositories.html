@@ -1,0 +1,21 @@
+<h1>{{'devRepositoryInfo' | translate}}</h1>
+
+Defined @Repository beans.
+<br />
+<br />
+
+<table class="table table-bordered">
+    <thead>
+    <th>{{'devDaoClass' | translate}}</th>
+    <th>{{'devExtendsTfBaseDao' | translate}}</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="repo in repositories" ng-class="repo.extendedFromTfBaseDao ? '': 'bg-danger'">
+        <td>{{repo.strClassName}}</td>
+        <td>
+            <span ng-if="repo.extendedFromTfBaseDao" class="label label-success"><span class="glyphicon glyphicon-ok"></span></span>
+            <span ng-if="!repo.extendedFromTfBaseDao" class="label label-danger"><span class="glyphicon glyphicon-remove"></span></span>
+        </td>
+    </tr>
+    </tbody>
+</table>

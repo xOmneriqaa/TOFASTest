@@ -1,0 +1,115 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{'supplier' | translate}}</label>
+                    <select class="form-control" ng-model="supplier" name="supplier"
+                            ng-options="item.sapCode as item.sapCode + ' - ' + item.name for item in pressSuppliers"
+                            validationMessage="{{'pleaseSelectSupplier' |translate}}" required>
+                        <option value="">--</option>
+                    </select>
+
+                    <div class="help-block">
+                        <p class="k-invalid-msg" data-for="supplier"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>{{'firmType' | translate}}</label>
+                    <select class="form-control" ng-model="firmType" name="firmType"
+                            validationMessage="{{'pleaseSelectFirmType' |translate}}" required>
+                        <option value="">--</option>
+                        <option ng-repeat="item in firmTypes" value="{{item}}">{{item | translate}}</option>
+                    </select>
+
+                    <div class="help-block">
+                        <p class="k-invalid-msg" data-for="firmType"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="form-group">
+                    <label>{{'firmDescription' | translate}}</label>
+                    <input type="text" ng-model="firmDescription" name="firmDescription"
+                           class="form-control" ng-disabled="!firmType || firmType == 'FIRM'"
+                           validationMessage="{{'pleaseEnterFirmDescription' |translate}}" required/>
+
+                    <div class="help-block">
+                        <p class="k-invalid-msg" data-for="firmDescription"></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <label>{{'lossDate' | translate}}</label>
+                <input kendo-date-picker class="form-control"
+                       name="lossDate" ng-model="lossDate" required style="width: 100%;"
+                       validationMessage="{{'lossDateFieldCanNotBeBlank' |translate}}"/>
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="lossDate"></p>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <label>{{'lossDescription' | translate}}</label>
+                <textarea class="form-control" ng-model="lossDescription" name="lossDescription"
+                          validationMessage="{{'pleaseEnterSomeDescription' |translate}}" required></textarea>
+
+                <div class="help-block">
+                    <p class="k-invalid-msg" data-for="lossDescription"></p>
+                </div>
+            </div>
+
+        </div>
+
+        <div ng-transclude/>
+
+        <div class="panel panel-danger" ng-if="uploadErrors.length > 0">
+        	  <div class="panel-heading">
+        			<h3 class="panel-title">{{'errors' | translate}}</h3>
+        	  </div>
+        	  <ul class="list-group">
+                  <li class="list-group-item list-group-item-danger" ng-repeat="uploadError in uploadErrors">
+                      {{'row' | translate}}: {{uploadError.row + 1}}, {{'column' | translate}}: {{uploadError.column + 1}}
+                  </li>
+              </ul>
+        </div>
+
+    </div>
+
+    <div class="panel-footer">
+
+        <div class="pull-right">
+            <h3 class="label label-danger" ng-if="validator.errors().length > 0">
+                {{validator.errors().length}} {{'errorsInForm' | translate}}
+            </h3>
+
+            &nbsp;&nbsp;
+            <button type="button" class="btn btn-primary" ng-click="saveFunc()" ng-disabled="validator.errors().length > 0 ">
+                <span class="glyphicon glyphicon-save"></span> &nbsp;
+                {{'save' | translate}} 
+            </button>
+
+
+        </div>
+
+        {{getTotalCost() | tfEurCurrency}}
+
+
+
+
+        <div class="clearfix"></div>
+
+    </div>
+</div>
+

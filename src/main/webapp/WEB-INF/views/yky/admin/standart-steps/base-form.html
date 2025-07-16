@@ -1,0 +1,19 @@
+<div class="form-group">
+    <label>{{'name' | translate}}</label>
+    <input type="text" class="form-control" ng-model="item.name" />
+</div>
+
+<div class="form-group">
+    <label>{{'productionLossSubTypes' | translate}}</label>
+    <select kendo-multi-select k-options="subLossTypesSelectOptions" k-ng-model="item.productionSubLossTypes"></select>
+
+</div>
+
+<div class="form-group">
+    <label>{{'duration' | translate}}</label>
+    <input type="number" class="form-control" ng-model="item.duration" />
+</div>
+
+<div class="form-group">
+    <input type="checkbox" ng-model="item.statusBool" /> {{'status' | translate}}
+</div>

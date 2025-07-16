@@ -1,0 +1,64 @@
+
+<h3>{{ 'reports' | translate }}</h3>
+<ul class="nav nav-pills">
+
+    <li ui-sref-active="active">
+        <a ui-sref="reports.mainReport">
+            {{'mainReport' | translate }}
+        </a>
+    </li>
+
+
+    <li ui-sref-active="active" tf-has-role="TFG_YKY_ADMIN">
+        <a ui-sref="reports.efficiency">
+            {{'efficiencyReport' | translate }}
+        </a>
+    </li>
+
+    <li ui-sref-active="active" tf-has-roles="" roles="['TFG_YKY_ADMIN','TFG_YKY_REPORT']">
+        <a ui-sref="reports.discardedParts">
+            {{'discardedPartsReport' | translate }}
+        </a>
+    </li>
+
+    <li ui-sref-active="active" tf-has-role="TFG_YKY_REPORT">
+        <a ui-sref="reports.supplierBased">
+            {{'supplierBasedReport' | translate }}
+        </a>
+    </li>
+
+    <li ui-sref-active="active" tf-has-role="TFG_YKY_PRESS_USER">
+        <a ui-sref="reports.press">
+            {{'pressReports' | translate }}
+        </a>
+    </li>
+
+    <li ui-sref-active="active" tf-has-role="TFG_YKY_ADMIN">
+        <a ui-sref="reports.invoiceReadyReport">
+            {{'invoiceReadyLosses' | translate }}
+        </a>
+    </li>
+
+    <li ui-sref-active="active" tf-has-role="TFG_YKY_ADMIN">
+        <a ui-sref="reports.previousInvoices">
+            {{'previousInvoices' | translate }}
+        </a>
+    </li>
+ 	
+ 	<li ui-sref-active="active"> <!-- TODO bu kisim herkese acik olmali,simdilik admin olarak actim  -->
+        <a ui-sref="reports.lossDetailReport" tf-has-role="TFG_YKY_ADMIN">
+            {{'lossDetailReport' | translate }}
+        </a>
+    </li>
+    
+    <li ui-sref-active="active"> <!-- TODO bu kisim herkese acik olmali,simdilik admin olarak actim  -->
+        <a ui-sref="reports.sqpReport" tf-has-roles="" roles="['TFG_YKY_ADMIN','TFG_YKY_REPORT', 'TFG_YKY_LC_PRODUCTION', 'TFG_YKY_LC_LOGISTICS', 'TFG_YKY_APPROVAL_QUALITY', 'TFG_YKY_APPROVAL_LOGISTICS', 'TFG_YKY_LC_QUALITY', 'TFG_YKY_LC_QUALITY_LAB', 'TFG_YKY_PRESS_USER','TFG_YKY_BUYER','TFG_YKY_REF','TFG_YKY_DURATION_DEF'] ">
+            {{'sqpReport' | translate }}
+        </a>
+    </li>
+
+</ul>
+
+<hr />
+
+<div ui-view="" class="slide-reveal"></div>
